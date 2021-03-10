@@ -1,2 +1,3 @@
-# SameGame
-Création du jeu "SameGame" réalisé en binôme
+# PT21_APL2020
+
+SameGame
