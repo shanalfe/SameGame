@@ -14,14 +14,12 @@ JVMFLAGS =
 
 ### REGLES ESSENTIELLES ###
 
-Main.class : Main.java Fenetre.class
+Main.class : Main.java Menu.class
 	${JC} ${JCFLAGS} Main.java
 
-Fenetre.class : Fenetre.java MouseFenetreControl.class
-	${JC} ${JCFLAGS} Fenetre.java
+Menu.class : Menu.java ControllerMenu.class
+	${JC} ${JCFLAGS} Menu.java
 
-MouseFenetreControl.class : MouseFenetreControl.java 
-	${JC} ${JCFLAGS} MouseFenetreControl.java
 
 
 
