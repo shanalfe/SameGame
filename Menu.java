@@ -1,5 +1,5 @@
 /**
-*<b>La classe Menu intègre le menu</b>
+*La classe Menu intègre le menu
 *
 * @version1
 * @author Arthur DECORBEZ & Shana LEFEVRE
@@ -7,6 +7,7 @@
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
 
 
 public class Menu extends JFrame {
@@ -18,14 +19,35 @@ public class Menu extends JFrame {
     	this.setSize (800,600);
 	  	this.setLocation (200,200);
 		this.setResizable(false);
-		//this.add(new Fond(""));
+		this.setLayout (null);
+		
 	  	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	  
+		//this.add(new ImageFond("Image/salameche.jpeg"));
+		
+		JButton jeuAlea = new JButton("Grille aléatoire");
+		jeuAlea.setBounds(100,400,200,70);
+		jeuAlea.setBackground (Color.RED);
+		jeuAlea.setForeground (Color.WHITE);
+		jeuAlea.setBorder (BorderFactory.createLineBorder(Color.ORANGE,5));
+			
+		JButton jeuFichier = new JButton ("Ouvrir un fichier");
+		jeuFichier.setBounds (500,400,200,70);
+		jeuFichier.setBackground (Color.RED);
+		jeuFichier.setForeground (Color.WHITE);
+		jeuFichier.setBorder (BorderFactory.createLineBorder(Color.ORANGE,5));
+	
 		/**
-		 * Appel de la classe MouseFenetreControl qui permettra le controle du menu
+		 * Appel de la classe ControllerMenu
 		 */
-		MouseFenetreControl control = new MouseFenetreControl (this);
-		this.addMouseListener(control);
+
+		ControllerMenu a = new ControllerMenu (this);
+		jeuFichier.addActionListener(a);
+		jeuAlea.addActionListener (a);
+
+		this.add (jeuAlea);
+		this.add (jeuFichier);
+
   	}
+
 
 }

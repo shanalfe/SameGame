@@ -1,5 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.JComponent;
+import java.awt.Graphics;
 
 /**
  * Classe Main contenant le main de notre jeu
@@ -9,7 +11,8 @@ import javax.swing.*;
 
 public class Main {
 	public static void main(String[] args) {
-		Fenetre windows = new Fenetre ();
-		windows.setVisible (true);
+		
+		Menu windows = new Menu ();
+		windows.setVisible(true);
 	}
 }

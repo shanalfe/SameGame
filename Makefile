@@ -17,10 +17,17 @@ JVMFLAGS =
 Main.class : Main.java Menu.class
 	${JC} ${JCFLAGS} Main.java
 
-Menu.class : Menu.java ControllerMenu.class
+Menu.class : Menu.java Background.class ControllerMenu.class
 	${JC} ${JCFLAGS} Menu.java
 
+ControllerMenu.class : ControllerMenu.java Plateau.class
+	${JC} ${JCFLAGS} ControllerMenu.java
 
+Plateau.class : Plateau.java
+	${JC} ${JCFLAGS} Plateau.java
+
+Background.class : Background.java 
+	${JC} ${JCFLAGS} Background.java
 
 
 ### REGLES OPTIONNELLES ###

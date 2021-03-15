@@ -5,76 +5,40 @@ import java.util.Random;
 
 
 /**
- * Classe Plateau qui créé et gère le plateau de jeu
+ * Classe Plateau qui créé le plateau de jeu 
  * @version 1.0
  * @author Arthur DECORBEZ & Shana LEFEVRE
  */
 
 public class Plateau extends JFrame {
 
-    
-	private Couleur[][] tab;
-	private int[][] tabObjet;
-
-
-    public void InitialiserPlateau () {
-
-        /** Déclaration des variables */
-        int ligne = 0, colonne = 0, plouf;
-        
-        JPanel panneau = new JPanel();
-        this.add (panneau);
-        this.tab = new Couleur[10][15];
-		this.tabObjet = new int [10][15];
-
-		Random aleatoire = new Random();
-		
-
-        /** Création du tableau de 10 lignes et 15 colonnes */
-        panneau.setLayout(new GridLayout(10,15,0,0));
-       
-        /**
-         * @params ligne : variable représentant la ligne
-         * @param colonne : variable représentant la colonne
-         */
-        
-        for (ligne = 0; ligne < 10; ligne ++){
-            for (colonne = 0; colonne <15; colonne ++){
-                
-                
-                /** Gestion de l'aléatoire */
-
-                plouf = aleatoire.nextInt(3);
-
-                if (plouf == 0){
-                    this.tab [i][j] = new Salameche ();
-                    panneau.add (tab[i][j]);
-                    this.tabObjet [i][j] = 1;
-                }
-
-                if (plouf == 1){
-                    this.tab [i][j] = new Carapuce ();
-                    panneau.add (tab[i][j]);
-                    this.tabObjet [i][j] = 2;
-                }
-
-                if (plouf == 2){
-                    this.tab [i][j] = new Bulbi ();
-                    panneau.add (tab[i][j]);
-                    this.tabObjet [i][j] = 3;
-                }
-                
-            }
-        }
+    public Plateau () {
+        super ("SameGame");
     }
 
     
-	public Couleur[][] getTab() {
-		return this.tab;
-	}
+    /**
+     * Méthode IniGrilleAl qui permet la création de la grille aléatoire
+     */
+    public void IniGrilleAl (){
+     
+        JPanel panneau = new JPanel();
+        this.add(panneau);
+
+        Random random = new Random();
+
+        this.setSize (800,600);
+        this.setLocation (200,200);
+        this.setLayout (null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
+        this.setVisible(true);
+
+        System.out.println("Création de la Grille aléatoire");
+
+    }
 	
-	public int[][] getTabi() {
-		return this.tabObject;
-	}
+
+
 
 }
