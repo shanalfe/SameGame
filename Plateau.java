@@ -99,15 +99,22 @@ public class Plateau extends JFrame {
 
     }
 
-    public Bloc[][] getTab() {
+    /**
+     * @return tab : tableau avec les images
+     */
+
+    public Bloc[][] recupTab() {
 		return this.tab;
 	}
 
-	public char[][] getTabt() {
+    /**
+     * @return tabTerm : tableau du terminal avec les références : RBV
+     */
+    
+	public char[][] recupTabTerm() {
 		return this.tabTerm;
 	}
 	
-
 
 
 }
