@@ -18,7 +18,7 @@ import java.util.Random;
 public class Plateau extends JFrame {
 
     /** Déclaration des variables*/
-    private int [][] tabTerm;
+    private char [][] tabTerm;
     private Bloc [][] tab;
 
     public Plateau () {
@@ -44,7 +44,7 @@ public class Plateau extends JFrame {
          
         /** Déclaration des variables */
         int plouf, colonne = 0, ligne = 0;
-        this.tabTerm = new int[10][15];
+        this.tabTerm = new char[10][15];
         this.tab = new Bloc [10][15];
      
         JPanel panneau = new JPanel();
@@ -64,7 +64,7 @@ public class Plateau extends JFrame {
 
                 if (plouf == 0){
 
-                    this.tabTerm[ligne][colonne] = 1;
+                    this.tabTerm[ligne][colonne] = 'R';
 
                     this.tab[ligne][colonne] = new Salameche();
 					panneau.add(tab[ligne][colonne]);
@@ -72,14 +72,14 @@ public class Plateau extends JFrame {
                 }
                 else if (plouf == 1) {
 
-                    this.tabTerm[ligne][colonne] = 2;
+                    this.tabTerm[ligne][colonne] = 'B';
                     this.tab[ligne][colonne] = new Carapuce ();
 					panneau.add(tab[ligne][colonne]);
 
                 }
                 else if (plouf == 2){
 
-                    this.tabTerm[ligne][colonne] = 3;
+                    this.tabTerm[ligne][colonne] = 'V';
                     this.tab[ligne][colonne] = new Bulbi();
 					panneau.add(tab[ligne][colonne]);
 
@@ -89,8 +89,8 @@ public class Plateau extends JFrame {
         }
 
         /**Affichage terminal */
-        for (int[] tab: tabTerm) {
-            for (int s: tab) {
+        for (char[] tab: tabTerm) {
+            for (char s: tab) {
                 System.out.print(s + "\t");
             }
             System.out.println("\n");
@@ -103,7 +103,7 @@ public class Plateau extends JFrame {
 		return this.tab;
 	}
 
-	public int[][] getTabt() {
+	public char[][] getTabt() {
 		return this.tabTerm;
 	}
 	

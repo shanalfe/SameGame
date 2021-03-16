@@ -17,7 +17,7 @@ public class Bloc extends JPanel {
 
     /**Déclaration de variables */
     protected Image imageBloc;
-    protected int color;
+    protected char color;
 
     public Bloc () {
         super ();
