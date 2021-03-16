@@ -27,33 +27,31 @@ public class Bloc extends JPanel {
 
 	public void paintComponent(Graphics c) {
         
-        Graphics p = c.create();
+        Graphics secondPinceau = c.create();
 
 		if (this.isOpaque()) {	    	
-	    	p.setColor(this.getBackground());
-	    	p.fillRect(0, 0, this.getWidth(), this.getHeight());
+	    	secondPinceau.setColor(this.getBackground());
+	    	secondPinceau.fillRect(0, 0, this.getWidth(), this.getHeight());
 		}
+
+       
 
         
         if(this.color == 1) {
-			Image imageBloc = getToolkit().getImage(this.getClass().getResource("/Image/Pokémon/004.png"));
-			p.drawImage(imageBloc, 0, 0, this);
+			Image imageBloc = getToolkit().getImage(this.getClass().getResource("/Image/Pokémon/004_opt.png"));
+			secondPinceau.drawImage(imageBloc, 0, 0, this);
 		}
 
         if (this.color == 2){
-            Image imageBloc = getToolkit().getImage(this.getClass().getResource("/Image/Pokémon/007.png"));
-			p.drawImage(imageBloc, 0, 0, this);            
+            Image imageBloc = getToolkit().getImage(this.getClass().getResource("/Image/Pokémon/007_opt.png"));
+			secondPinceau.drawImage(imageBloc, 0, 0, this);            
         }
 
         if (this.color == 3){
-            Image imageBloc = getToolkit().getImage(this.getClass().getResource("/Image/Pokémon/001.png"));
-			p.drawImage(imageBloc, 0, 0, this);
+            Image imageBloc = getToolkit().getImage(this.getClass().getResource("/Image/Pokémon/001_opt.png"));
+			secondPinceau.drawImage(imageBloc, 0, 0, this);
         }
     
     }
-
-    public void setCouleur(int c) {
-		this.color = c;
-		this.repaint();
-	}
+    
 }

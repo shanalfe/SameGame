@@ -34,13 +34,20 @@ public class Plateau extends JFrame {
     public void IniGrilleAl (){
 
         System.out.println("Création d'une grille aléatoire" + "\n");
-
+         /**Fenetre */
+         this.setSize (800,600);
+         this.setLocation (200,200);
+         this.setLayout (null);
+         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         this.setResizable(false);
+         this.setVisible(true);
+         
         /** Déclaration des variables */
         int plouf, colonne = 0, ligne = 0;
         this.tabTerm = new int[10][15];
         this.tab = new Bloc [10][15];
      
-       // JPanel panneau = new JPanel();
+       //JPanel panneau = new JPanel();
        // this.add(panneau);
         
         GridLayout gestionnaire = new GridLayout(10, 15);
@@ -86,16 +93,8 @@ public class Plateau extends JFrame {
                 System.out.print(s + "\t");
             }
             System.out.println("\n");
-         }
-       
+        }
 
-        /**Fenetre */
-        this.setSize (800,600);
-        this.setLocation (200,200);
-        this.setLayout (null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-        this.setVisible(true);
 
     }
 

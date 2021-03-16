@@ -14,6 +14,16 @@ JVMFLAGS =
 
 ### REGLES ESSENTIELLES ###
 
+Bulbi.class : Bulbi.java
+	${JC} ${JCFLAGS} Bulbi.java
+
+Salameche.class : Salameche.java
+	${JC} ${JCFLAGS} Salameche.java
+
+Carapuce.class : Carapuce.java
+	${JC} ${JCFLAGS} Carapuce.java
+
+
 Main.class : Main.java Menu.class
 	${JC} ${JCFLAGS} Main.java
 
@@ -32,14 +42,6 @@ Plateau.class : Plateau.java Bloc.class Salameche.class Bulbi.class Carapuce.cla
 Bloc.class : Bloc.java Salameche.class Bulbi.class Carapuce.class
 	${JC} ${JCFLAGS} Bloc.java
 
-Bulbi.class : Bulbi.java
-	${JC} ${JCFLAGS} Bulbi.java
-
-Salameche.class : Salameche.java
-	${JC} ${JCFLAGS} Salameche.java
-
-Carapuce.class : Carapuce.java
-	${JC} ${JCFLAGS} Carapuce.java
 
 
 
