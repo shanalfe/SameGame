@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.Random;
 
 /**
- * Classe Carapuce (couleur bleu) qui représente un jeton
+ * Classe Carapuce (couleur bleu) qui représente un bloc = 3
  */
 
 public class Carapuce extends Bloc {

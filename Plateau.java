@@ -37,7 +37,7 @@ public class Plateau extends JFrame {
          /**Fenetre */
          this.setSize (800,600);
          this.setLocation (200,200);
-         this.setLayout (null);
+        
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          this.setResizable(false);
          this.setVisible(true);
@@ -47,11 +47,12 @@ public class Plateau extends JFrame {
         this.tabTerm = new int[10][15];
         this.tab = new Bloc [10][15];
      
-       //JPanel panneau = new JPanel();
-       // this.add(panneau);
+        JPanel panneau = new JPanel();
+        panneau.setLayout (new GridLayout (10,15));
+        panneau.setBackground(Color.BLUE);
         
-        GridLayout gestionnaire = new GridLayout(10, 15);
-        this.setLayout(gestionnaire);
+        this.add(panneau);
+        
 
         Random random = new Random();
 
@@ -66,21 +67,21 @@ public class Plateau extends JFrame {
                     this.tabTerm[ligne][colonne] = 1;
 
                     this.tab[ligne][colonne] = new Salameche();
-					this.add(tab[ligne][colonne]);
+					panneau.add(tab[ligne][colonne]);
                    
                 }
                 else if (plouf == 1) {
 
                     this.tabTerm[ligne][colonne] = 2;
                     this.tab[ligne][colonne] = new Carapuce ();
-					this.add(tab[ligne][colonne]);
+					panneau.add(tab[ligne][colonne]);
 
                 }
                 else if (plouf == 2){
 
                     this.tabTerm[ligne][colonne] = 3;
                     this.tab[ligne][colonne] = new Bulbi();
-					this.add(tab[ligne][colonne]);
+					panneau.add(tab[ligne][colonne]);
 
                 }
                

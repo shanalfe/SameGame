@@ -34,8 +34,6 @@ public class Bloc extends JPanel {
 	    	secondPinceau.fillRect(0, 0, this.getWidth(), this.getHeight());
 		}
 
-       
-
         
         if(this.color == 1) {
 			Image imageBloc = getToolkit().getImage(this.getClass().getResource("/Image/Pokémon/004_opt.png"));
