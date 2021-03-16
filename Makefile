@@ -20,14 +20,28 @@ Main.class : Main.java Menu.class
 Menu.class : Menu.java Background.class ControllerMenu.class
 	${JC} ${JCFLAGS} Menu.java
 
+Background.class : Background.java 
+	${JC} ${JCFLAGS} Background.java
+
 ControllerMenu.class : ControllerMenu.java Plateau.class
 	${JC} ${JCFLAGS} ControllerMenu.java
 
-Plateau.class : Plateau.java
+Plateau.class : Plateau.java Bloc.class Salameche.class Bulbi.class Carapuce.class
 	${JC} ${JCFLAGS} Plateau.java
 
-Background.class : Background.java 
-	${JC} ${JCFLAGS} Background.java
+Bloc.class : Bloc.java Salameche.class Bulbi.class Carapuce.class
+	${JC} ${JCFLAGS} Bloc.java
+
+Bulbi.class : Bulbi.java
+	${JC} ${JCFLAGS} Bulbi.java
+
+Salameche.class : Salameche.java
+	${JC} ${JCFLAGS} Salameche.java
+
+Carapuce.class : Carapuce.java
+	${JC} ${JCFLAGS} Carapuce.java
+
+
 
 
 ### REGLES OPTIONNELLES ###

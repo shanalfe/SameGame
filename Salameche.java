@@ -7,10 +7,10 @@ import java.util.Random;
  * Classe Salameche (couleur rouge) qui représente un jeton
  */
 
-public class Salameche extends Couleur {
+public class Salameche extends Bloc {
     
     public Salameche (){
         super ();
-        this.couleur = 1;
+        this.color = 1;
     }
 }

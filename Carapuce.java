@@ -7,11 +7,11 @@ import java.util.Random;
  * Classe Carapuce (couleur bleu) qui représente un jeton
  */
 
-public class Carapuce extends Couleur {
+public class Carapuce extends Bloc {
 
     public Carapuce (){
         super ();
-        this.couleur = 2;
+        this.color = 2;
     }
     
 }

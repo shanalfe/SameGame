@@ -16,9 +16,17 @@ public class ControllerMenu implements ActionListener {
     
     private JFrame windows;
 
+    /**
+     * @param windows
+     */
     public ControllerMenu(JFrame w) {
 		this.windows = w;
 	}
+
+    /**
+     * @see Plateau 
+     * 
+     */
     
     public void actionPerformed(ActionEvent e){
 			

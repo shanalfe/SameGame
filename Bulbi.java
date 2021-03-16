@@ -7,10 +7,10 @@ import java.util.Random;
  * Classe Bulbi (couleur verte) qui représente un jeton
  */
 
-public class Bulbi extends Couleur {
+public class Bulbi extends Bloc {
     
     public Bulbi (){
         super();
-        this.couleur = 3;
+        this.color = 3;
     }
 }

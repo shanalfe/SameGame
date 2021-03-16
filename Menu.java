@@ -1,3 +1,8 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+
 /**
 *La classe Menu intègre le menu
 *
@@ -5,14 +10,12 @@
 * @author Arthur DECORBEZ & Shana LEFEVRE
 */
 
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-
 
 public class Menu extends JFrame {
+
   	/**
-	* Création de la fenetre et ajout du controller
+	* Création de la méthode fenetre et ajout du controller
+	*	
 	*/
     public Menu () {
     	super ("SameGame");
