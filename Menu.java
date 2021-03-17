@@ -14,27 +14,30 @@ import java.awt.event.*;
 public class Menu extends JFrame {
 
   	/**
-	* Création de la méthode fenetre et ajout du controller
+	* Création du constructeur Menu
 	*	
 	*/
     public Menu () {
+    	
     	super ("SameGame");
     	this.setSize (800,600);
 	  	this.setLocation (200,200);
 		this.setResizable(false);
-		this.setLayout (null);
 		
 	  	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//this.add(new ImageFond("Image/salameche.jpeg"));
+		
+	  	JPanel fond = new JPanel();
+	  	this.add (fond, BorderLayout.CENTER);
+
 		
 		JButton jeuAlea = new JButton("Grille aléatoire");
-		jeuAlea.setBounds(100,400,200,70);
+		// jeuAlea.setBounds(100,400,200,70);
 		jeuAlea.setBackground (Color.RED);
 		jeuAlea.setForeground (Color.WHITE);
 		jeuAlea.setBorder (BorderFactory.createLineBorder(Color.ORANGE,5));
 			
 		JButton jeuFichier = new JButton ("Ouvrir un fichier");
-		jeuFichier.setBounds (500,400,200,70);
+		// jeuFichier.setBounds (500,400,200,70);
 		jeuFichier.setBackground (Color.RED);
 		jeuFichier.setForeground (Color.WHITE);
 		jeuFichier.setBorder (BorderFactory.createLineBorder(Color.ORANGE,5));
@@ -46,8 +49,8 @@ public class Menu extends JFrame {
 		jeuFichier.addActionListener(a);
 		jeuAlea.addActionListener (a);
 
-		this.add (jeuAlea);
-		this.add (jeuFichier);
+		fond.add (jeuAlea);
+		fond.add (jeuFichier);
 
   	}
 

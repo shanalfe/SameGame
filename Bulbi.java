@@ -11,6 +11,6 @@ public class Bulbi extends Bloc {
     
     public Bulbi (){
         super();
-        this.color = 3;
+        super.color = 3;
     }
 }

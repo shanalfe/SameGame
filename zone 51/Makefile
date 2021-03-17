@@ -30,6 +30,9 @@ Main.class : Main.java Menu.class
 Menu.class : Menu.java Background.class ControllerMenu.class
 	${JC} ${JCFLAGS} Menu.java
 
+ControllerJeu.class : ControllerJeu.java
+	${JC} ${JCFLAGS} ControllerJeu.java
+
 Background.class : Background.java 
 	${JC} ${JCFLAGS} Background.java
 

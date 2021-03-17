@@ -19,6 +19,7 @@ public class Bloc extends JPanel {
     protected Image imageBloc;
     protected char color;
 
+    /**Constructeur de Bloc */
     public Bloc () {
         super ();
     }

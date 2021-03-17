@@ -11,7 +11,7 @@ public class Carapuce extends Bloc {
 
     public Carapuce (){
         super ();
-        this.color = 2;
+        super.color = 2;
     }
     
 }

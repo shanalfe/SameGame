@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-// Necessary for file selection
+/** Necessary for file selection*/
 import javax.swing.JFileChooser;
 import java.io.File;
 
@@ -18,11 +18,14 @@ public class ControllerMenu implements ActionListener
 {
 	private JFrame windows;
 
+
+	/**Constructeur ControlleurMenu*/
 	public ControllerMenu(JFrame w)
 	{
 		this.windows = w;
 	}
 
+	/** Méthode actionPerfomed*/
 	public void actionPerformed(ActionEvent e)
 	{
 		String action = e.getActionCommand();

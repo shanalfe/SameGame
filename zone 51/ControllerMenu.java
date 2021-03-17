@@ -16,12 +16,12 @@ import java.io.File;
 
 public class ControllerMenu implements ActionListener
 {
-	// private JFrame windows;
+	private JFrame windows;
 
-	// public ControllerMenu(JFrame w)
-	// {
-	// 	this.windows = w;
-	// }
+	public ControllerMenu(JFrame w)
+	{
+		this.windows = w;
+	}
 
 	public void actionPerformed(ActionEvent e)
 	{
@@ -33,8 +33,8 @@ public class ControllerMenu implements ActionListener
 			this.windows.dispose();
 			Plateau windows = new Plateau();
 			windows.IniGrilleAl();
-            // ControllerJeu control = new ControllerJeu (windows);
-            // windows.addMouseListener (control);
+            ControllerJeu control = new ControllerJeu (windows);
+            windows.addMouseListener (control);
 		}
 
 		else if(action.equals("Ouvrir un fichier"))
