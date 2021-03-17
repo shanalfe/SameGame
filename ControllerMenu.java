@@ -1,3 +1,10 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+/** Necessary for file selection*/
+import javax.swing.JFileChooser;
+import java.io.File;
+
 /**
  * Classe ControllerMenu qui gère les évènements de la classe Menu
  * On peut choisir le mode de génération de la grille : aléatoire ou fichier
@@ -5,15 +12,6 @@
  * @author Arthur DECORBEZ & Shana LEFEVRE
  * 
  */
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-
-/** Necessary for file selection*/
-import javax.swing.JFileChooser;
-import java.io.File;
-
 public class ControllerMenu implements ActionListener
 {
 	private JFrame windows;
@@ -25,7 +23,10 @@ public class ControllerMenu implements ActionListener
 		this.windows = w;
 	}
 
-	/** Méthode actionPerfomed*/
+	/**
+	 * Méthode actionPerformed
+	 * 	Permet le control des boutons pour le mode de jeu
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		String action = e.getActionCommand();

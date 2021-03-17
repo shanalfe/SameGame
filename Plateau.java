@@ -4,7 +4,8 @@ import java.awt.event.*;
 import java.util.Random;
 
 /**
- * Classe Plateau qui créé le plateau de jeu 
+ * Classe Plateau 
+ *  créé le plateau du jeu 
  * @version 1.0
  * @author Arthur DECORBEZ & Shana LEFEVRE
  * 
@@ -13,12 +14,13 @@ import java.util.Random;
  * 2 = bleu
  * 3 = vert
  */
-
 public class Plateau extends JFrame {
 
     /*Déclaration des variables*/
 
-    // protected char [][] tabTerm;
+  
+
+
   
     /**
      * Constructeur de la classe Plateau
@@ -37,6 +39,8 @@ public class Plateau extends JFrame {
         JPanel info = new JPanel();
         fenetre.add (info, BorderLayout.NORTH);
         info.setBackground(Color.GRAY);
+        JLabel score = new JLabel ("Score");
+        info.add (score);
       
         /*Panneau du jeu*/
         JPanel jeu = new JPanel();
@@ -46,12 +50,9 @@ public class Plateau extends JFrame {
         /*Création de la grille*/
         jeu.setLayout (new GridLayout (10,15));
         jeu.setBackground (Color.BLUE);
-
-        JLabel score = new JLabel ("Score");
-        info.add (score);
-
+      
         GenerateurGrilleAleatoire al = new GenerateurGrilleAleatoire ();
-        al.TabAl();
+        al.TabAl(jeu);
 
 
     }

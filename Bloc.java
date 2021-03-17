@@ -2,8 +2,8 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * Classe Bloc qui permet l'ajout du bloc au chiffre random
- * généré par la classe Plateau
+ * Classe Bloc 
+ *  Permet l'ajout du bloc au chiffre random
  * Respectivement :
  * 1 = rouge
  * 2 = bleu
@@ -34,7 +34,6 @@ public class Bloc extends JPanel {
 	    	secondPinceau.setColor(this.getBackground());
 	    	secondPinceau.fillRect(0, 0, this.getWidth(), this.getHeight());
 		}
-
         
         if(this.color == 1) {
 			Image imageBloc = getToolkit().getImage(this.getClass().getResource("/Image/Pokémon/004_opt.png"));

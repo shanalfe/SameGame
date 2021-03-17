@@ -13,13 +13,13 @@ JVMFLAGS =
 
 
 ### REGLES ESSENTIELLES ###
-Bulbi.class : Bulbi.java
+Bulbi.class : Bulbi.java Bloc.class
 	${JC} ${JCFLAGS} Bulbi.java
 
-Salameche.class : Salameche.java
+Salameche.class : Salameche.java Bloc.class
 	${JC} ${JCFLAGS} Salameche.java
 
-Carapuce.class : Carapuce.java
+Carapuce.class : Carapuce.java Bloc.class
 	${JC} ${JCFLAGS} Carapuce.java
 
 Main.class : Main.java Menu.class
@@ -34,8 +34,11 @@ ControllerMenu.class : ControllerMenu.java Plateau.class
 Plateau.class : Plateau.java GenerateurGrilleAleatoire.class
 	${JC} ${JCFLAGS} Plateau.java
 
-GenerateurGrilleAleatoire.class : GenerateurGrilleAleatoire.java
+GenerateurGrilleAleatoire.class : GenerateurGrilleAleatoire.java Bulbi.class Salameche.class Carapuce.class
 	${JC} ${JCFLAGS} GenerateurGrilleAleatoire.java
+
+Bloc.class : Bloc.java 
+	${JC} ${JCFLAGS} Bloc.java
 
 
 

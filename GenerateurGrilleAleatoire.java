@@ -2,16 +2,29 @@ import java.util.Random;
 import java.awt.*;
 import javax.swing.*;
 
-
+/**
+ * Classe GenerateurGrilleAleatoire
+ *  Génère une grille aléatoire
+ */
 public class GenerateurGrilleAleatoire extends JPanel {
 
+    /**Déclaration des variables*/
+      protected char [][] tabTerm;
+      private JPanel jeu;
+      protected Bloc[][] tab;
     
-
-    public void TabAl (){
+    /**
+     * Méthode TabAl
+     *  Permet la génération de la grille aléatoire
+     */
+    public void TabAl (JPanel panel) {
 
 		 /** Déclaration des variables */
         int plouf, colonne = 0, ligne = 0;
-        char tabTerm[][] = new char[10][15] ;
+        char tabTerm[][] = new char[10][15];
+        tab = new Bloc[10][15];
+        
+        this.jeu = panel;
 
 		Random random = new Random();
 
@@ -22,19 +35,20 @@ public class GenerateurGrilleAleatoire extends JPanel {
                 plouf = random.nextInt(3);
 
                 if (plouf == 0){
-                    tabTerm[ligne][colonne] = 'R'; 			
-                   
+                    tabTerm[ligne][colonne] = 'R'; 	
+                    
+                    tab[ligne][colonne] = new Salameche();
+					jeu.add(tab[ligne][colonne]);
                 }
                 else if (plouf == 1) {
-                    tabTerm[ligne][colonne] = 'B';                 
-			
-
+                    tabTerm[ligne][colonne] = 'B';   
+                    tab[ligne][colonne] = new Carapuce ();
+					jeu.add(tab[ligne][colonne]);     
                 }
                 else if (plouf == 2){
-                    tabTerm[ligne][colonne] = 'V';
-                   
-				
-
+                    tabTerm[ligne][colonne] = 'V';	
+                    tab[ligne][colonne] = new Bulbi();
+					jeu.add(tab[ligne][colonne]);		
                 }
                
             }            
@@ -47,10 +61,16 @@ public class GenerateurGrilleAleatoire extends JPanel {
             }
             System.out.println("\n");
         }
-
-
+        
     }
 
+    public Bloc[][] getTab() {
+		return tab;
+	}
+	
+	public char [][] getTabTerm () {
+		return tabTerm;
+    }
    
 
 }
