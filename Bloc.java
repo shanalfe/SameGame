@@ -3,11 +3,7 @@ import javax.swing.*;
 
 /**
  * Classe Bloc 
- *  Permet l'ajout du bloc au chiffre random
- * Respectivement :
- * 1 = rouge
- * 2 = bleu
- * 3 = vert
+ *  Déssine les blocs en fonction de sa correspondance
  * 
  * @version 1.0
  * @author Arthur DECORBEZ & Shana LEFEVRE
@@ -19,13 +15,19 @@ public class Bloc extends JPanel {
     protected Image imageBloc;
     protected char color;
 
-    /**Constructeur de Bloc */
+    /**
+     * Constructeur de Bloc 
+     */
     public Bloc () {
         super ();
     }
 
     @Override
 
+    /**
+     * Méthode paintComponent
+     *  Génère les images pour blocs selon la classe GenerateurGrilleAleatoire
+     */
 	public void paintComponent(Graphics c) {
         
         Graphics secondPinceau = c.create();

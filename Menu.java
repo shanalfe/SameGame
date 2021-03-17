@@ -4,22 +4,22 @@ import java.awt.event.*;
 
 
 /**
-*La classe Menu intègre le menu
+*Classe Menu
+* Permet l'intégration du menu
 *
 * @version1
 * @author Arthur DECORBEZ & Shana LEFEVRE
 */
-
-
 public class Menu extends JFrame {
 
   	/**
-	* Création du constructeur Menu
-	*	
+	* Constructeur Menu
+	*	Création de la fenetre Menu avec ses boutons
 	*/
     public Menu () {
     	
-    	super ("SameGame");
+    	super ();
+		this.setTitle ("SameGame");
     	this.setSize (800,600);
 	  	this.setLocation (200,200);
 		this.setResizable(false);
@@ -44,6 +44,7 @@ public class Menu extends JFrame {
 	
 		/**
 		 * Appel de la classe ControllerMenu
+		 * 	Gestion des événements
 		 */
 		ControllerMenu a = new ControllerMenu (this);
 		jeuFichier.addActionListener(a);

@@ -4,7 +4,7 @@ import javax.swing.*;
 
 /**
  * Classe GenerateurGrilleAleatoire
- *  Génère une grille aléatoire
+ *  Génère une grille aléatoire et associe les déssins correspondants
  */
 public class GenerateurGrilleAleatoire extends JPanel {
 
@@ -16,6 +16,8 @@ public class GenerateurGrilleAleatoire extends JPanel {
     /**
      * Méthode TabAl
      *  Permet la génération de la grille aléatoire
+     * @param panel
+     * @see Menu
      */
     public void TabAl (JPanel panel) {
 
@@ -64,9 +66,18 @@ public class GenerateurGrilleAleatoire extends JPanel {
         
     }
 
+    /**
+     * Méthode getTab 
+     * @return tab
+     */
     public Bloc[][] getTab() {
 		return tab;
 	}
+    /**
+     * Méthode getTabTerm
+     * @return tabTerm
+     */
+
 	
 	public char [][] getTabTerm () {
 		return tabTerm;

@@ -8,19 +8,8 @@ import java.util.Random;
  *  créé le plateau du jeu 
  * @version 1.0
  * @author Arthur DECORBEZ & Shana LEFEVRE
- * 
- * Respectivement :
- * 1 = rouge
- * 2 = bleu
- * 3 = vert
  */
 public class Plateau extends JFrame {
-
-    /*Déclaration des variables*/
-
-  
-
-
   
     /**
      * Constructeur de la classe Plateau
@@ -51,6 +40,11 @@ public class Plateau extends JFrame {
         jeu.setLayout (new GridLayout (10,15));
         jeu.setBackground (Color.BLUE);
       
+        /**
+         * Appel de la classe GenerateurGrilleAleatoire 
+         *  Permet aussi l'affichage sur le JPanel jeu  
+         * 
+         */
         GenerateurGrilleAleatoire al = new GenerateurGrilleAleatoire ();
         al.TabAl(jeu);
 

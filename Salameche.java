@@ -4,7 +4,9 @@ import java.awt.event.*;
 import java.util.Random;
 
 /**
- * Classe Salameche (couleur rouge) qui représente un bloc = 1
+ * Classe Salameche 
+ *  (couleur rouge) qui représente un bloc = 1
+ * @see Bloc
  */
 
 public class Salameche extends Bloc {
@@ -13,4 +15,5 @@ public class Salameche extends Bloc {
         super ();
         this.color = 1;
     }
+    
 }

@@ -4,7 +4,8 @@ import javax.swing.JComponent;
 import java.awt.Graphics;
 
 /**
- * Classe Main contenant le main de notre jeu
+ * Classe Main
+ * 	Contenant le coeur du jeu
  * @version 1.0
  * @author Arthur DECORBEZ & Shana LEFEVRE
  */
