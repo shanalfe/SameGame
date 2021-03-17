@@ -42,7 +42,6 @@ public class Menu extends JFrame {
 		/**
 		 * Appel de la classe ControllerMenu
 		 */
-
 		ControllerMenu a = new ControllerMenu (this);
 		jeuFichier.addActionListener(a);
 		jeuAlea.addActionListener (a);

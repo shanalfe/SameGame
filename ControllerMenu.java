@@ -30,11 +30,9 @@ public class ControllerMenu implements ActionListener
 		if(action.equals("Grille aléatoire"))
 		{
 			System.out.println("Select mode: Random");
+			Plateau plateau = new Plateau ();
 			this.windows.dispose();
-			Plateau windows = new Plateau();
-			windows.IniGrilleAl();
-            ControllerJeu control = new ControllerJeu (windows);
-            windows.addMouseListener (control);
+			plateau.setVisible(true);
 		}
 
 		else if(action.equals("Ouvrir un fichier"))
