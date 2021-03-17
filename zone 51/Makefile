@@ -33,11 +33,10 @@ Menu.class : Menu.java Background.class ControllerMenu.class
 Background.class : Background.java 
 	${JC} ${JCFLAGS} Background.java
 
-ControllerMenu.class : ControllerMenu.java Plateau.class ControllerJeu.class
+ControllerMenu.class : ControllerMenu.java Plateau.class 
 	${JC} ${JCFLAGS} ControllerMenu.java
 
-ControlleurJeu.class : ControllerJeu.java Plateau.class ControllerMenu.class
-	${JC} ${JCFLAGS} ControllerJeu.java
+
 
 Plateau.class : Plateau.java Bloc.class Salameche.class Bulbi.class Carapuce.class
 	${JC} ${JCFLAGS} Plateau.java

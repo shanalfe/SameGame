@@ -16,7 +16,6 @@ public class ControllerJeu implements MouseListener {
     /**Déclaration des variables */
     int ligne = 0, colonne = 0;
 
-
     public ControllerJeu (Plateau w) {
         this.windows = w;  
        
@@ -26,7 +25,6 @@ public class ControllerJeu implements MouseListener {
         for (ligne=0; ligne<10; ligne++) {
             for (colonne=0; colonne<15;colonne++) {
                 this.tab[ligne][colonne].addMouseListener(this);
-
                 this.tab[ligne][colonne].setBackground(Color.WHITE);
                 
             }
@@ -97,7 +95,6 @@ public class ControllerJeu implements MouseListener {
                 if ( (evenement.getSource() == this.tab[ligne][colonne]) ){
                    
                     System.out.println("Groupe : " +this.grp);
-                    this.tab[ligne][colonne].setOpaque(true);
                     this.tab[ligne][colonne].setBackground(Color.YELLOW);
 
                 }
