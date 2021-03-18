@@ -25,7 +25,7 @@ Carapuce.class : Carapuce.java Bloc.class
 Main.class : Main.java Menu.class
 	${JC} ${JCFLAGS} Main.java
 
-Menu.class : Menu.java ControllerMenu.class
+Menu.class : Menu.java ControllerMenu.class 
 	${JC} ${JCFLAGS} Menu.java
 
 ControllerMenu.class : ControllerMenu.java Plateau.class
@@ -34,11 +34,18 @@ ControllerMenu.class : ControllerMenu.java Plateau.class
 Plateau.class : Plateau.java GenerateurGrilleAleatoire.class
 	${JC} ${JCFLAGS} Plateau.java
 
-GenerateurGrilleAleatoire.class : GenerateurGrilleAleatoire.java Bulbi.class Salameche.class Carapuce.class
+ControllerJeu.class : ControllerJeu.java
+	${JC} ${JCFLAGS} ControllerJeu.java
+
+GenerateurGrilleAleatoire.class : GenerateurGrilleAleatoire.java Bulbi.class Salameche.class Carapuce.class ControllerJeu.class
 	${JC} ${JCFLAGS} GenerateurGrilleAleatoire.java
 
 Bloc.class : Bloc.java 
 	${JC} ${JCFLAGS} Bloc.java
+
+
+
+
 
 
 

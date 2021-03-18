@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.awt.*;
 import javax.swing.*;
-
+import java.awt.event.*;
 /**
  * Classe GenerateurGrilleAleatoire
  *  Génère une grille aléatoire et associe les déssins correspondants
@@ -21,16 +21,17 @@ public class GenerateurGrilleAleatoire extends JPanel {
      */
     public void TabAl (JPanel panel) {
 
-		 /** Déclaration des variables */
+		 // Déclaration des variables
         int plouf, colonne = 0, ligne = 0;
         char tabTerm[][] = new char[10][15];
         tab = new Bloc[10][15];
         
         this.jeu = panel;
+   
 
 		Random random = new Random();
 
-        /**Création du tableau */
+        //Création du tableau 
         for (ligne = 0; ligne <10; ligne ++) {
             for (colonne = 0; colonne <15; colonne++) {
                 
@@ -56,14 +57,15 @@ public class GenerateurGrilleAleatoire extends JPanel {
             }            
         }
 
-        /**Affichage terminal */
+        //Affichage terminal 
         for (char[] tab: tabTerm) {
             for (char s: tab) {
-                System.out.print(s + "\t");
+                System.out.print(s + " ");
             }
             System.out.println("\n");
         }
         
+        jeu.addMouseListener(new ControllerJeu (tab, tabTerm));
     }
 
     /**

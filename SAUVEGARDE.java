@@ -73,40 +73,35 @@ public class ControllerJeu implements MouseListener {
             
             for (colonne = 0; colonne < 15; colonne ++){
             
-                if ( (evenement.getSource() == tab[ligne][colonne]) && this.tabTerm [ligne][colonne] != 'X' ){
-                    tab[ligne][colonne].setOpaque(true);
-                    tab[ligne][colonne].setBackground(Color.YELLOW);
-                    
-                    Radar (ligne, colonne);
-                   
-                  
-                    
-                    
-                    
-                    
-                    System.out.println("Groupe : " +this.grp);
+                if ( (evenement.getSource() == this.tab[ligne][colonne]) && this.tabTerm [ligne][colonne] != 'X' ){
+                    this.tab[ligne][colonne].setOpaque(true);
 
+                    this.tab[ligne][colonne].setBackground(Color.YELLOW);
+                    Radar (ligne, colonne);
+                    System.out.println("Groupe : " +this.grp);
+                   
+                    
+                    for (ligne = 0; ligne <10; ligne ++){
+                        for (colonne = 0; colonne <15; colonne ++){
+                            if ( (storage [ligne][colonne] != 'N') && (this.tabTerm [ligne][colonne] != 'X') ){
+                                this.tab [ligne][colonne].setBackground(Color.YELLOW);
+                            }
+                        }
+                    }
 
                 }
             }
         }
     }
 
-    public void Radar (int ligne, int colonne){
-          
-        // Vérifie si son voisin de gauche est du meme type
-        if ( (colonne >= 0) && (colonne<15) ){
-            if ( tabTerm[ligne][colonne] == tabTerm[ligne][colonne-1] ){
-                tab[ligne][colonne-1].setBackground(Color.YELLOW);
-                Radar (ligne, colonne -1);
-            }
-        }
+    
+    @Override
+ 
+    public void mouseClicked​(MouseEvent e){
+
+        
     }
 
-
-
-    
-    
     /**
     *Méthode mouseExited
     * Quand l'utilisateur quitte le composant
@@ -116,32 +111,12 @@ public class ControllerJeu implements MouseListener {
 	for (int i=0; i<10; i++) {
 	    for (int j=0; j<15; j++) {
 		  this.tab[i][j].setBackground(Color.WHITE);
-		 
+		  this.storage[i][j] = 'N';
 	    }
 	}
-
+	this.grp = 0;
     }
 
-    @Override
-    /**
-     * Méthode mouseClicked
-     *  Permet de gérer l'evenement clique de la souris
-     * 
-     */
-    public void mouseClicked​(MouseEvent e){
-        
-        //Affichage terminal 
-        for (char[] tab: tabTerm) {
-            for (char s: tab) {
-                System.out.print(s + " ");
-            }
-            System.out.println("\n");
-        }
-        
-        
-    
-        
-    }
 
 
     @Override
@@ -192,7 +167,56 @@ public class ControllerJeu implements MouseListener {
     }
 
 
- 
+     /**
+     * Méthode Radar 
+     *  Permet de détecter/trouver un groupe à partir d'un bloc en utilisant la récurrence
+     */
+
+    public void Radar(int x, int y) {
+
+        if(y>0) {
+            if((this.tabTerm[x][y] == this.tabTerm[x][y-1]) && (this.tabTerm[x][y] != 'X')) {
+    
+           
+                  this.storage[x][y-1] = this.tabTerm[x][y-1];
+                  this.grp++;
+                  Radar(x, y-1);
+    
+                
+            }
+        }
+    
+        if(y+1<15) {
+            if((this.tabTerm[x][y] == this.tabTerm[x][y+1]) && (this.tabTerm[x][y] != 'X')) {
+           
+                this.storage[x][y+1] = this.tabTerm[x][y+1];
+                this.grp++;
+                Radar(x, y+1);
+            
+            }
+        }
+        if(x>0) {
+            if((this.tabTerm[x][y] == this.tabTerm[x-1][y]) && (this.tabTerm[x][y] != 'X')) {
+           
+                this.storage[x-1][y] = this.tabTerm[x-1][y];
+                this.grp++;
+                Radar(x-1, y);
+            
+            }
+        }
+    
+        if(x+1<10) {
+            if((this.tabTerm[x][y] == this.tabTerm[x+1][y]) && (this.tabTerm[x][y] != 'X')) {
+           
+                this.storage[x+1][y] = this.tabTerm[x+1][y];
+                this.grp++;
+                Radar(x+1, y);
+            
+            }
+        }
+    }
+
+
 
 
    

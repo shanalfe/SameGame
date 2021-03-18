@@ -24,20 +24,29 @@ public class Menu extends JFrame {
 	  	this.setLocation (200,200);
 		this.setResizable(false);
 		
+		this.setVisible(true);
 	  	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-	  	JPanel fond = new JPanel();
-	  	this.add (fond, BorderLayout.CENTER);
-
+		  /**Paneau bouton */
+	  	JPanel bouton = new JPanel();
+		bouton.setBackground(Color.GRAY);
+	  	this.add (bouton, BorderLayout.SOUTH);
+		
+		  /**Panneau fond */
+		JPanel fond = new JPanel();		
+		JLabel image = new JLabel( new ImageIcon( "salameche.jpg"));
+		fond.add(image);
+		this.add (fond, BorderLayout.CENTER);
+	
 		
 		JButton jeuAlea = new JButton("Grille aléatoire");
-		// jeuAlea.setBounds(100,400,200,70);
+		jeuAlea.setPreferredSize(new Dimension(200,50));
 		jeuAlea.setBackground (Color.RED);
 		jeuAlea.setForeground (Color.WHITE);
 		jeuAlea.setBorder (BorderFactory.createLineBorder(Color.ORANGE,5));
 			
 		JButton jeuFichier = new JButton ("Ouvrir un fichier");
-		// jeuFichier.setBounds (500,400,200,70);
+		jeuFichier.setPreferredSize(new Dimension(200,50));
 		jeuFichier.setBackground (Color.RED);
 		jeuFichier.setForeground (Color.WHITE);
 		jeuFichier.setBorder (BorderFactory.createLineBorder(Color.ORANGE,5));
@@ -50,8 +59,8 @@ public class Menu extends JFrame {
 		jeuFichier.addActionListener(a);
 		jeuAlea.addActionListener (a);
 
-		fond.add (jeuAlea);
-		fond.add (jeuFichier);
+		bouton.add (jeuAlea);
+		bouton.add (jeuFichier);
 
   	}
 

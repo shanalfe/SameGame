@@ -10,7 +10,7 @@ import java.util.Random;
  * @author Arthur DECORBEZ & Shana LEFEVRE
  */
 public class Plateau extends JFrame {
-  
+
     /**
      * Constructeur de la classe Plateau
      *  Initalisation de la fenetre
@@ -28,13 +28,16 @@ public class Plateau extends JFrame {
         JPanel info = new JPanel();
         fenetre.add (info, BorderLayout.NORTH);
         info.setBackground(Color.GRAY);
-        JLabel score = new JLabel ("Score");
+        JLabel score = new JLabel ("Score : ");
+
+        Font police = new Font("Chilanka",Font.BOLD,25);
+        score.setFont(police);
         info.add (score);
       
         /*Panneau du jeu*/
         JPanel jeu = new JPanel();
         fenetre.add (jeu, BorderLayout.CENTER);
-        jeu.setBackground(Color.RED);
+      
 
         /*Création de la grille*/
         jeu.setLayout (new GridLayout (10,15));
@@ -48,16 +51,11 @@ public class Plateau extends JFrame {
         GenerateurGrilleAleatoire al = new GenerateurGrilleAleatoire ();
         al.TabAl(jeu);
 
+       
+
+
 
     }
-
-
-  
-
-   
-
-
-
 
 
 }

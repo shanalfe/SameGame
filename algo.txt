@@ -1,0 +1,18 @@
+Evenement dès que la souris passe sur un composant
+    pour les lignes allant jusqu'10
+        pour les colonnes allant jusqu'a 15
+
+            J'écoute la derniere position de la souris
+            si la case tab de bloc n'est pas vide (!= 'X')
+                alors je l'a colorie
+                et je vérifie s'il y a des voisins
+
+                si elle a des voisins du meme groupe alors
+                    je les colorie en rouge et je récupère le
+
+
+
+Evenement dès que la souris quitte le composant
+    Pour les lignes allant jusqu'a 10
+        pour les colonnes allant jusqu'a 15
+            Dès que je quitte mon composant alors la couleur redevient blanche
