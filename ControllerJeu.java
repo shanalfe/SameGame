@@ -20,11 +20,10 @@ public class ControllerJeu implements MouseListener {
     private JPanel jeu;
     protected char [][] tabTerm;
     protected Bloc[][] tab; //tab de Bloc
-
-
+    protected char [][] bool;
 
     private int grp = 0; // taille du groupe    
-    private char [][] storage; // tableau qui stocke le groupe survolé, X : case libre
+
 
    
 
@@ -33,23 +32,23 @@ public class ControllerJeu implements MouseListener {
      * @param tab : récupération du tableau Bloc 
      * @param tabTerm : récupération du tableau terminal
      */
-    public ControllerJeu (Bloc[][] tab, char [][]tabTerm ) {
+    public ControllerJeu (Bloc[][] tab, char [][]tabTerm, char [][] bool ) {
         
         //Déclaration des variables 
         super ();
-        this.tab=tab;
-        this.tabTerm=tabTerm;       
-        int ligne = 0, colonne = 0;
-        char storage [][] = new char [10][15];
+        this.tab = tab;
+        this.tabTerm = tabTerm;       
+        int i = 0, j = 0;
+        this.bool = bool; // tableau qui s'utilise comme booleen
 
         
-        for (ligne = 0; ligne < 10; ligne++ ) {
+        for (i = 0; i < 10; i++ ) {
             
-            for (colonne = 0; colonne < 15;colonne++ ) {
+            for (j = 0; j < 15;j++ ) {
                 
-                this.tab[ligne][colonne].addMouseListener(this);
-                this.tab[ligne][colonne].setBackground(Color.WHITE);
-                storage [ligne][colonne] = 'N'; //Initalisation case occupée
+                this.tab[i][j].addMouseListener(this);
+                this.tab[i][j].setBackground(Color.WHITE);
+               
                 // System.out.println (storage[ligne][colonne]);
                              
             }
@@ -67,44 +66,104 @@ public class ControllerJeu implements MouseListener {
      */
     public void mouseEntered (MouseEvent evenement){
         
-        int ligne = 0, colonne = 0;
+        int i = 0, j = 0;
         
-        for (ligne = 0; ligne <10; ligne ++){
+        for (i = 0; i <10; i ++){
             
-            for (colonne = 0; colonne < 15; colonne ++){
+            for (j = 0; j < 15; j ++){
+
+                bool[i][j] = 'F'; // initialisation du tableau booléen à false -> sans groupe
             
-                if ( (evenement.getSource() == tab[ligne][colonne]) && this.tabTerm [ligne][colonne] != 'X' ){
-                    tab[ligne][colonne].setOpaque(true);
-                    tab[ligne][colonne].setBackground(Color.YELLOW);
+                if ( (evenement.getSource() == tab[i][j]) && this.tabTerm [i][j] != 'X' ){
+                     
                     
-                    Radar (ligne, colonne);
-                   
-                  
+                    tab[i][j].setOpaque(true);
+                    tab[i][j].setBackground(Color.YELLOW);
                     
-                    
-                    
-                    
+                    Radar (i, j);                    
                     System.out.println("Groupe : " +this.grp);
 
 
                 }
             }
         }
-    }
 
-    public void Radar (int ligne, int colonne){
-          
-        // Vérifie si son voisin de gauche est du meme type
-        if ( (colonne >= 0) && (colonne<15) ){
-            if ( tabTerm[ligne][colonne] == tabTerm[ligne][colonne-1] ){
-                tab[ligne][colonne-1].setBackground(Color.YELLOW);
-                Radar (ligne, colonne -1);
+        System.out.println("Initialisation bool");
+        for (char[] tab: bool) {
+            for (char bo: tab) {
+                System.out.print(bo + " ");
             }
+            System.out.println("\n");
         }
+        System.out.println("Tabterm");
+        for (char[] tab: tabTerm) {
+            for (char ta: tab) {
+                System.out.print(ta + " ");
+            }
+            System.out.println("\n");
+        }
+
     }
 
+    public void Radar (int x, int y){
+       
+            // Vérife bas
+            if ( x<9){
 
+                if ( ( this.tabTerm[x][y] == this.tabTerm[x+1][y] ) && ( this.bool[x+1][y] == 'F' ) ) {
+                    this.bool [x+1][y] = 'T';
+                    this.tab[x+1][y].setBackground(Color.YELLOW);
+                    x = x+1;
+                    Radar (x, y); // Récursivité
+                }
 
+            }
+
+            // Vérifie haut
+            if ( x>0 ) {
+
+                if ( ( this.tabTerm[x][y] == this.tabTerm[x-1][y] ) && ( this.bool[x-1][y] == 'F' ) ) {
+                    this.bool [x+1][y] = 'T';
+                    this.tab[x-1][y].setBackground(Color.YELLOW);
+                    x = x-1;
+                    Radar (x, y);
+                }
+
+            }
+
+            // Vérifie droite 
+            if ( y<14 ) {
+
+                if ( ( this.tabTerm[x][y] == this.tabTerm[x][y+1] ) && ( this.bool[x][y+1] == 'F' ) ) {
+                    this.bool[x][y+1] = 'T';
+                    this.tab[x][y+1].setBackground(Color.YELLOW);
+                    y = y+1;
+                    Radar(x, y);
+
+                }
+            }
+
+            // vérifie gauche
+
+            if ( y>0 ) {
+                
+                if ( ( this.tabTerm[x][y] == this.tabTerm[x][y-1] ) && ( this.bool[x][y-1] == 'F' ) ) {
+                    this.bool[x][y-1]= 'T';
+                    this.tab[x][y-1].setBackground(Color.YELLOW);
+                    y = y-1;
+                    Radar (x,y);
+                }
+            }
+
+            System.out.println("Initialisation bool");
+        for (char[] tab: bool) {
+            for (char bo: tab) {
+                System.out.print(bo + " ");
+            }
+            System.out.println("\n");
+        }
+        
+    }
     
     
     /**
@@ -113,12 +172,15 @@ public class ControllerJeu implements MouseListener {
     */
     @Override
     public void mouseExited(MouseEvent e) {
-	for (int i=0; i<10; i++) {
-	    for (int j=0; j<15; j++) {
-		  this.tab[i][j].setBackground(Color.WHITE);
-		 
-	    }
-	}
+       
+        int i = 0, j = 0;
+
+        for ( i=0; i<10; i++) {
+            for ( j=0; j<15; j++) {
+                this.bool [i][j] = 'F'; // Réinitialisation du tableau booléen
+                this.tab[i][j].setBackground(Color.WHITE);
+            }
+        }
 
     }
 
@@ -131,16 +193,20 @@ public class ControllerJeu implements MouseListener {
     public void mouseClicked​(MouseEvent e){
         
         //Affichage terminal 
+        System.out.println("\n");
         for (char[] tab: tabTerm) {
             for (char s: tab) {
                 System.out.print(s + " ");
             }
             System.out.println("\n");
         }
-        
-        
-    
-        
+        System.out.println("\n");
+        for (char[] tab: bool) {
+            for (char b: tab) {
+                System.out.print(b + " ");
+            }
+            System.out.println("\n");
+        }
     }
 
 
