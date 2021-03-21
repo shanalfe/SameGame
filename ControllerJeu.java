@@ -314,20 +314,32 @@ public class ControllerJeu implements MouseListener {
         }
 
        
-        for (i=0; i<10; i++){
+        for (i = 0; i < 10; i++){
 
-            for (j=0; j<15; j++){
+            for (j = 0; j < 15; j++){
 
-                 // Réinitalisation
+                 // Réinitalisation des variables
                 this.bool [i][j] = 'F'; // réinitialisation du tableau bool
                 this.tab[i][j].setForeground (Color.WHITE);   
 
-                 // Détection lignes
+                 // Détection lignes vides
                 if (this.tabTerm[i][j] == 'X'){
-                    OrganiserColonne (j);
+                   
+                    OrganiserLignes (j);
                 }
 
             }
+        }
+
+        
+
+        for (j = 0; j < 15; j++){
+
+                 // Détection lignes vides
+                if ( this.VerificationCol(j) == true){
+                   
+                   CopyColonne ();
+                }            
         }
 
         this.grp = 0;
@@ -353,11 +365,18 @@ public class ControllerJeu implements MouseListener {
     }
 
 
-    public void OrganiserColonne (int j) {
+    /**
+    * Méthode OrganiserLigne
+    * Permet 
+    * @param j : 
+    */
+    public void OrganiserLignes (int j) {
+        // Déclaration des variables
         int i;
         char color;
 
-        for ( i=9; i>0; i--) {
+        for ( i = 9; i > 0; i--) {
+           
             if(this.tabTerm[i][j] == 'X') {
 
                 color = this.tabTerm[i-1][j];
@@ -365,25 +384,60 @@ public class ControllerJeu implements MouseListener {
                 this.tab[i-1][j].ChangerBloc('b');
                 this.tabTerm[i-1][j] = 'X';
         
-                this.tab[i][j].ChangerBloc(color);
-                
-                 this.tabTerm [i][j] = color;
-
+                this.tab[i][j].ChangerBloc(color);                
+                this.tabTerm [i][j] = color;
             }
 
         }
     }
 
 
+    /**
+    * Méthode CopyColonne
+    *   Permet l'affichage
+    */
+    public void CopyColonne () {
 
-       
-                
-    
+        int i = 0, k = 0, j=0;
+        char color;
 
+        // Décalage pour les 15 colonnes
+        for (k = 0; k<14; k++){
 
+            // Maximum 15 colonnes donc 14
+            for (j = 0; j<14; j++){
 
-    
+                if (VerificationCol(j)){
 
-     
+                    for (i = 0; i < 10; i++) {
+
+                        color = this.tabTerm[i][j+1];
+                        this.tab[i][j].ChangerBloc(color);
+
+                        this.tabTerm[i][j] = this.tabTerm[i][j+1];
+                        this.tabTerm[i][j+1] = 'X';
+                        this.tab[i][j+1].ChangerBloc ('b');
+                    }                   
+                    
+                }
+            }
+        }
+
+    }
+
+    public boolean VerificationCol (int j) {
+
+        int i = 0;
+
+        for (i=0; i <10; i++){
+            
+            if (this.tabTerm[i][j] != 'X'){
+                return false;
+            }
+
+        }
+
+        return true;
+    }
 
 }
