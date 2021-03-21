@@ -34,7 +34,7 @@ ControllerMenu.class : ControllerMenu.java Plateau.class
 Plateau.class : Plateau.java GenerateurGrilleAleatoire.class
 	${JC} ${JCFLAGS} Plateau.java
 
-ControllerJeu.class : ControllerJeu.java
+ControllerJeu.class : ControllerJeu.java 
 	${JC} ${JCFLAGS} ControllerJeu.java
 
 GenerateurGrilleAleatoire.class : GenerateurGrilleAleatoire.java Bulbi.class Salameche.class Carapuce.class ControllerJeu.class

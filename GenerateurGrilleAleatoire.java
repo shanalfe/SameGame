@@ -3,13 +3,14 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 /**
- * Classe GenerateurGrilleAleatoire
+ * Classe </code>GenerateurGrilleAleatoire</code>
  *  Génère une grille aléatoire et associe les déssins correspondants
  */
 public class GenerateurGrilleAleatoire extends JPanel {
 
     /**Déclaration des variables*/
       protected char [][] tabTerm;
+      private JFrame fenetre;
       private JPanel jeu;
       protected Bloc[][] tab;
       protected char [][] bool;
@@ -62,12 +63,12 @@ public class GenerateurGrilleAleatoire extends JPanel {
         }
 
         //Affichage terminal 
-        for (char[] tab: tabTerm) {
-            for (char s: tab) {
-                System.out.print(s + " ");
-            }
-            System.out.println("\n");
-        }
+        // for (char[] tab: tabTerm) {
+        //     for (char s: tab) {
+        //         System.out.print(s + " ");
+        //     }
+        //     System.out.println("\n");
+        // }
         
         jeu.addMouseListener(new ControllerJeu (tab, tabTerm, bool, grp, score));
     }
@@ -76,29 +77,45 @@ public class GenerateurGrilleAleatoire extends JPanel {
 
     /**
      * Méthode getTab 
+     * Renvoie la tab contenant les images correspondant à tabTerm
      * @return tab
      */
     public Bloc[][] getTab() {
-		return tab;
-	}
-
+		  return tab;
+	  }
 
     /**
      * Méthode getTabTerm
+     * Renvoie la tab RVB du terminal
      * @return tabTerm
      */	
-	 public char [][] getTabTerm () {
-		return tabTerm;
+	  public char [][] getTabTerm () {
+		  return tabTerm;
     }
 
+    /**
+    * Méthode getBool
+    * Renvoie la tab bool utilisé dans ControlleurJeu pour le status des cases
+    * @return bool
+    */
     public char [][] getBool (){
-        return bool;
+      return bool;
     }
 
+    /**
+    * Methode getGrp
+    * Renvoie la taille d'un groupe utilisé dans ControlleurJeu
+    * @return grp
+    */
     public double getGrp (){
       return grp;
     }
 
+    /**
+    * Methode getScore
+    * Renvoie le utilisé dans ControlleurJeu
+    * @return score
+    */
     public double getScore (){
       return score;
     }

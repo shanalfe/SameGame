@@ -13,7 +13,7 @@ public class Salameche extends Bloc {
     
     public Salameche (){
         super ();
-        this.color = 1;
+        this.color = 'R';
     }
     
 }
