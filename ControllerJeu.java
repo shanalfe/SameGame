@@ -270,7 +270,7 @@ public class ControllerJeu implements MouseListener {
 
                     this.tab[i][j].setBackground(Color.WHITE);
                     this.tab[i][j].ResetBloc();
-                    this.tab[i][j].ChangerBloc(blanc);
+                    this.tab[i][j].ChangerBloc('b');
                     this.tabTerm[i][j] = 'X'; // La case est libre
                 }
                 
@@ -362,14 +362,12 @@ public class ControllerJeu implements MouseListener {
 
                 color = this.tabTerm[i-1][j];
                
-                this.tab[i-1][j].ChangerBloc(banc);
+                this.tab[i-1][j].ChangerBloc('b');
                 this.tabTerm[i-1][j] = 'X';
-            
-
+        
                 this.tab[i][j].ChangerBloc(color);
-                this.tabTerm[i][j]= color;
                 
-                 
+                 this.tabTerm [i][j] = color;
 
             }
 

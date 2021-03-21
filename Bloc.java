@@ -15,6 +15,7 @@ public class Bloc extends JPanel {
     protected Image imageBloc;
     protected char color;
 
+
     /**
      * Constructeur de Bloc 
      */
@@ -56,7 +57,7 @@ public class Bloc extends JPanel {
 			secondPinceau.drawImage(imageBloc, 0, 0, this);
         }
 
-        if (this.color == 0) {
+        if (this.color == 'b') {
 
             secondPinceau.setColor(Color.WHITE);
             secondPinceau.drawOval(0, 0, 50, 50);
@@ -72,7 +73,7 @@ public class Bloc extends JPanel {
     *   Permet de réinitialiser la couleur
     */
     public void ResetBloc (){
-        this.color = 'B';
+        this.color = 'b';
     }
 
 
