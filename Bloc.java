@@ -62,6 +62,7 @@ public class Bloc extends JPanel {
             secondPinceau.setColor(Color.WHITE);
             secondPinceau.drawOval(0, 0, 50, 50);
             secondPinceau.fillOval(0, 0, 50, 50);
+        
         }
 
     
