@@ -39,7 +39,7 @@ public class ControllerJeu implements MouseListener {
      /**
     * Composante du score
     */
-    protected double score;
+    public double score;
 
 
     /**
@@ -50,7 +50,7 @@ public class ControllerJeu implements MouseListener {
      * @param grp : récupération de la variable pour calculer la taille du groupe
      * @param score : récupération du score
      */
-    public ControllerJeu (Bloc[][] tab, char [][]tabTerm, char [][] bool, double grp, double score ) {
+    public ControllerJeu (Bloc[][] tab, char [][]tabTerm, char [][] bool, double grp ) {
         
         //Déclaration et récupération des variables 
 
@@ -363,16 +363,14 @@ public class ControllerJeu implements MouseListener {
         this.grp = 0;
 
 
-        // for (i = 0; i < 10; i++){
+            
+        
+        // if (End() == true) {
 
-        //     for (j = 0; j < 15; j++){
-                
-        //         if (End() == true) {
-
-        //             System.out.println ("Fin jeu");
-        //         }
-        //     }
+        //     System.out.println ("Fin jeu");
         // }
+            
+        
       
 
        
@@ -500,32 +498,42 @@ public class ControllerJeu implements MouseListener {
     }
 
 
-    public boolean End () {
+    // public boolean End () {
 
-        int fin = 1, i = 0, j = 0;
+    //     int fin = 1, i = 0, j = 0;
+    //     this.grp = 0;
 
-        for (i = 0; i < 10; i++) {
+    //     for (i = 0; i < 10; i++) {
 
-            for (j = 0; j < 15; j++) {
+    //         for (j = 0; j < 15; j++) {
 
-                if ( (this.tabTerm[i][j] != 'X') && (this.bool [i][j] != '.') ) {
+    //             if ( (this.tabTerm[i][j] != 'X') && (this.bool [i][j] != '.') ) {
 
-                    Radar (i, j);
+    //                 Radar (i, j);
 
-                    if (this.grp > 0) {
+    //                 if (this.grp != 0) {
 
-                        return true;
-                    }
+    //                     this.tab[i][j].setBackground(Color.WHITE);
+    //                     return true;
+    //                 }
+
+    //             }
 
                   
-                }
+    //         }
 
-            }
+    //     }
 
-        }
-        return false;
+    //     for (i = 0; i < 10; i++) {
+
+    //         for (j = 0; j < 15; j++) {
+
+    //             this.bool[i][j] = 'F';
+    //     }
+
+    //     return false;
     
-    }
+    // }
 
 }
  

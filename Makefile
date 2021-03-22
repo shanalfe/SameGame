@@ -28,13 +28,16 @@ Main.class : Main.java Menu.class
 Menu.class : Menu.java ControllerMenu.class 
 	${JC} ${JCFLAGS} Menu.java
 
-ControllerMenu.class : ControllerMenu.java Plateau.class
+ControllerMenu.class : ControllerMenu.java Plateau.class LectureGrille.class
 	${JC} ${JCFLAGS} ControllerMenu.java
 
 Plateau.class : Plateau.java GenerateurGrilleAleatoire.class
 	${JC} ${JCFLAGS} Plateau.java
 
-ControllerJeu.class : ControllerJeu.java 
+LectureGrille.class : LectureGrille.java 
+	${JC} ${JCFLAGS} LectureGrille.java
+
+ControllerJeu.class : ControllerJeu.java
 	${JC} ${JCFLAGS} ControllerJeu.java
 
 GenerateurGrilleAleatoire.class : GenerateurGrilleAleatoire.java Bulbi.class Salameche.class Carapuce.class ControllerJeu.class

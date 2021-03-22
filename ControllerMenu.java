@@ -1,32 +1,39 @@
+/**
+* @version 1.0
+* @author Shana LEFEVRE & Arthur DECORBEZ
+*/
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-/** Necessary for file selection*/
+
+// Necessary for file selection
 import javax.swing.JFileChooser;
+
+// Necessary for file selection & read file
 import java.io.File;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
- * Classe ControllerMenu qui gère les évènements de la classe Menu
- * On peut choisir le mode de génération de la grille : aléatoire ou fichier
- * @version 1.0
- * @author Arthur DECORBEZ & Shana LEFEVRE
- * 
- */
+* Classe ControllerMenu qui gère les évènements de la classe Menu
+* On peut choisir le mode de génération de la grille : aléatoire ou fichier
+*/
 public class ControllerMenu implements ActionListener
 {
 	private JFrame windows;
 
-
-	/**Constructeur ControlleurMenu*/
+	/**
+	* Constructeur ControlleurMenu
+	*/
 	public ControllerMenu(JFrame w)
 	{
 		this.windows = w;
 	}
 
 	/**
-	 * Méthode actionPerformed
-	 * 	Permet le control des boutons pour le mode de jeu
-	 */
+	* Méthode actionPerformed
+	* Permet le control des boutons pour le mode de jeu
+	*/
 	public void actionPerformed(ActionEvent e)
 	{
 		String action = e.getActionCommand();
@@ -34,7 +41,7 @@ public class ControllerMenu implements ActionListener
 		if(action.equals("Grille aléatoire"))
 		{
 			System.out.println("Select mode: Random");
-			Plateau plateau = new Plateau ();
+			Plateau plateau = new Plateau("Random");
 			this.windows.dispose();
 			plateau.setVisible(true);
 		}
@@ -43,25 +50,30 @@ public class ControllerMenu implements ActionListener
 		{
 			System.out.println("Select mode: File");
 
-			JFileChooser importFile = new JFileChooser();
-			importFile.setMultiSelectionEnabled(false);
-			int res = importFile.showOpenDialog(null);
-			File f = null;
+			JFileChooser fileChooser = new JFileChooser(new File("./Grille"));
+			fileChooser.setMultiSelectionEnabled(false);
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("GRI File (.gri)", "gri");
 
-			if(res == JFileChooser.APPROVE_OPTION)
+			
+			fileChooser.setFileFilter(filter);
+
+			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			int returnValue = fileChooser.showOpenDialog(null);
+
+			if(returnValue == JFileChooser.APPROVE_OPTION)
 			{
-				f = importFile.getSelectedFile();
-				System.out.println("Name of file select : " + f.getName());
+				//System.out.println("APPROVE_OPTION");
 
-				if(f.getName().endsWith(".gri"))
+				File file = fileChooser.getSelectedFile();
+
+				if(file.getName().endsWith(".gri"))
 				{
-					System.out.println("Valid extension");
+					System.out.println("It's a .gri file !");
+					LectureGrille lectureGrille = new LectureGrille(file);
 				}
 				else
 				{
-					System.out.println("Invalid extension");
-					JOptionPane.showMessageDialog(null, "Please select a file with the extension .gri", "Invalid extension", JOptionPane.WARNING_MESSAGE);
-					return;
+					System.out.println("It's not a .gri file !");
 				}
 			}
 		}

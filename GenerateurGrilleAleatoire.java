@@ -15,7 +15,7 @@ public class GenerateurGrilleAleatoire extends JPanel {
       protected Bloc[][] tab;
       protected char [][] bool;
       protected double grp = 0;
-      protected double score = 0;
+    
     
     /**
      * Méthode TabAl
@@ -70,7 +70,7 @@ public class GenerateurGrilleAleatoire extends JPanel {
         //     System.out.println("\n");
         // }
         
-        jeu.addMouseListener(new ControllerJeu (tab, tabTerm, bool, grp, score));
+        jeu.addMouseListener(new ControllerJeu (tab, tabTerm, bool, grp));
     }
 
 
@@ -111,14 +111,6 @@ public class GenerateurGrilleAleatoire extends JPanel {
       return grp;
     }
 
-    /**
-    * Methode getScore
-    * Renvoie le utilisé dans ControlleurJeu
-    * @return score
-    */
-    public double getScore (){
-      return score;
-    }
  
 
 
