@@ -1,3 +1,0 @@
-# PT21_APL2020
-
-SameGame
