@@ -19,6 +19,7 @@ public class ControllerJeu implements MouseListener {
     private JPanel jeu;
      /**
     * Composante du tableau généré sur le terminal
+    * X -> Bloc non existant, R-> bloc rouge, V-> bloc vert, B-> bloc bleu
     */
     protected char [][] tabTerm;
      /**
@@ -27,6 +28,8 @@ public class ControllerJeu implements MouseListener {
     protected Bloc[][] tab;
      /**
     * Composante du tableau pour vérifier les status d'une sélection
+    * T -> bloc appartient à un groupe, F -> bloc appartient pas a un groupe
+    * . -> bloc n'existe plus donc pas de status
     */
     protected char [][] bool;
      /**
@@ -43,7 +46,7 @@ public class ControllerJeu implements MouseListener {
      * Constructeur ControllerJeu
      * @param tab : récupération du tableau Bloc 
      * @param tabTerm : récupération du tableau terminal
-     * @param bool : récupération du tableau utilisé comme booléen : True (T) /False (F)
+     * @param bool : récupération du tableau 
      * @param grp : récupération de la variable pour calculer la taille du groupe
      * @param score : récupération du score
      */
@@ -149,7 +152,7 @@ public class ControllerJeu implements MouseListener {
             }
 
             // Affichage
-            System.out.println("Initialisation bool");
+            //System.out.println("Initialisation bool");
             // for (char[] tab: bool) {
             //     for (char bo: tab) {
             //         System.out.print(bo + " ");
@@ -174,7 +177,7 @@ public class ControllerJeu implements MouseListener {
             
             for (j = 0; j < 15; j ++){
             
-                if ( (evenement.getSource() == tab[i][j]) && (this.tabTerm [i][j] != 'X') && (this.tabTerm[i][j] != 'D') ){
+                if ( (evenement.getSource() == tab[i][j]) && (this.tabTerm [i][j] != 'X')  ){
                                          
                     this.tab[i][j].setOpaque(true);
                     this.tab[i][j].setBackground(Color.YELLOW);
@@ -285,10 +288,11 @@ public class ControllerJeu implements MouseListener {
         //     System.out.println("\n");
         // }
 
-
-        // Calcul du score
-        this.score = this.score + Math.pow ( (this.grp - 2), 2 ); // Affichage
-        System.out.println ("Score : "+this.score);
+        if (Resultat () == true) {
+            // Calcul du score
+            this.score = this.score + Math.pow ( (this.grp - 2), 2 ); // Affichage
+            System.out.println ("Score : "+this.score);
+        }
 
     }
 
@@ -305,44 +309,71 @@ public class ControllerJeu implements MouseListener {
         int i = 0, j = 0;
 
         //Affichage terminal 
-        System.out.println("déclage");
-        for (char[] tab: tabTerm) {
-            for (char s: tab) {
-                System.out.print(s + " ");
-            }
-            System.out.println("\n");
-        }
+        System.out.println("Décalage fait");
+        // for (char[] tab: tabTerm) {
+        //     for (char s: tab) {
+        //         System.out.print(s + " ");
+        //     }
+        //     System.out.println("\n");
+        // }
 
        
         for (i = 0; i < 10; i++){
 
             for (j = 0; j < 15; j++){
-
-                 // Réinitalisation des variables
-                this.bool [i][j] = 'F'; // réinitialisation du tableau bool
+               
                 this.tab[i][j].setForeground (Color.WHITE);   
 
                  // Détection lignes vides
                 if (this.tabTerm[i][j] == 'X'){
                    
                     OrganiserLignes (j);
+                    
                 }
 
             }
         }
 
         
-
+         // Détection lignes vides
         for (j = 0; j < 15; j++){
-
-                 // Détection lignes vides
-                if ( this.VerificationCol(j) == true){
-                   
-                   CopyColonne ();
-                }            
+            
+            if ( this.VerificationCol(j) == true){
+               
+               CopyColonne ();
+            }            
         }
 
+
+        // Réinitialisation 
+        for (i = 0; i < 10; i++){
+
+            for (j = 0; j < 15; j++){
+
+                if (this.tabTerm [i][j] == 'X') {
+
+                    this.bool [i][j] = '.'; // status non compatible avec une case vide
+
+                } else if (this.tabTerm [i][j] != 'X') {
+
+                    this.bool [i][j] = 'F'; // réinitialisation du tableau bool
+                }
+            }
+        }
         this.grp = 0;
+
+
+        // for (i = 0; i < 10; i++){
+
+        //     for (j = 0; j < 15; j++){
+                
+        //         if (End() == true) {
+
+        //             System.out.println ("Fin jeu");
+        //         }
+        //     }
+        // }
+      
 
        
         //Affichage terminal 
@@ -366,11 +397,35 @@ public class ControllerJeu implements MouseListener {
 
 
     /**
+    * Méthode Resultat
+    * Permet de gagner des points QUE quand l'utilisateur clique sur un groupe
+    */
+    public boolean Resultat () {
+
+        int i = 0, j = 0;
+
+        for (i = 0; i < 10; i++){
+
+            for (j = 0; j < 15; j++){
+
+                if (this.bool [i][j] == 'T') {
+
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
     * Méthode OrganiserLigne
-    * Permet 
-    * @param j : 
+    *   Permet de déplacer les blocs vers le bas s'il y a une case vide
+    * @param j : Récupère une colonne
     */
     public void OrganiserLignes (int j) {
+        
         // Déclaration des variables
         int i;
         char color;
@@ -387,7 +442,6 @@ public class ControllerJeu implements MouseListener {
                 this.tab[i][j].ChangerBloc(color);                
                 this.tabTerm [i][j] = color;
             }
-
         }
     }
 
@@ -422,9 +476,14 @@ public class ControllerJeu implements MouseListener {
                 }
             }
         }
-
     }
 
+
+    /**
+    * Méthode VerificationCol
+    * @param j : prend une colonne précise
+    *   Permet de vérifier si une colonne est vide
+    */
     public boolean VerificationCol (int j) {
 
         int i = 0;
@@ -432,12 +491,41 @@ public class ControllerJeu implements MouseListener {
         for (i=0; i <10; i++){
             
             if (this.tabTerm[i][j] != 'X'){
+                
                 return false;
             }
-
         }
 
         return true;
     }
 
+
+    public boolean End () {
+
+        int fin = 1, i = 0, j = 0;
+
+        for (i = 0; i < 10; i++) {
+
+            for (j = 0; j < 15; j++) {
+
+                if ( (this.tabTerm[i][j] != 'X') && (this.bool [i][j] != '.') ) {
+
+                    Radar (i, j);
+
+                    if (this.grp > 0) {
+
+                        return true;
+                    }
+
+                  
+                }
+
+            }
+
+        }
+        return false;
+    
+    }
+
 }
+ 
