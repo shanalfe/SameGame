@@ -9,17 +9,19 @@ import javax.swing.*;
 
 public class Score extends JLabel {
 	
-	private double score = 0;
+	private double score;
+	
 	
 	/**
 	* Constructeur 
 	*/
-	public Score() {
-		super();
+	 public Score() {
+	 	super();
+	 	this.score = 0;
 		Font font = new Font("Chilanka", Font.BOLD, 25);
 		this.setFont(font);
 		this.setText("Score : " + this.score);
-	}
+	 }
 
 
 	/**

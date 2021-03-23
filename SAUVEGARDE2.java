@@ -12,14 +12,11 @@ import java.awt.event.*;
  * @see LectureGrille
  */
 public class ControllerJeu implements MouseListener {
-
-    private JFrame windows;
     
     /**
     * Composante du "plateau du jeu" 
     */
     private JPanel jeu;
-  
      /**
     * Composante du tableau généré sur le terminal
     * X -> Bloc non existant, R-> bloc rouge, V-> bloc vert, B-> bloc bleu
@@ -44,7 +41,7 @@ public class ControllerJeu implements MouseListener {
     */
     public double resultat;
 
-   
+    // private Score score;
 
 
     /**
@@ -67,9 +64,10 @@ public class ControllerJeu implements MouseListener {
         grp = 0;
         this.resultat = resultat;
         resultat = 0;
-       
+        // this.score = sco;
 
-        int i = 0, j = 0;        
+        int i = 0, j = 0;
+        
 
         for (i = 0; i < 10; i++ ) {
             
@@ -82,7 +80,7 @@ public class ControllerJeu implements MouseListener {
             }
         }
 
-     
+        //rajouter le panel pour le score
     }
 
     /**
@@ -107,11 +105,15 @@ public class ControllerJeu implements MouseListener {
                     if ( x<9){
 
                         if ( ( this.tabTerm[x][y] == this.tabTerm[x+1][y] ) && ( this.bool[x+1][y] == 'F' ) ) {
-                            this.grp++;
-                            this.bool [x+1][y] = 'T';
-                            this.tab[x+1][y].setBackground(Color.YELLOW);
-                            x = x+1;
-                            Radar (x, y); // Récursivité
+                            
+                            if ( ( Boule (x+1,y) ) ) {
+                                this.grp++;
+                                this.bool [x+1][y] = this.tabTerm[x+1][y];
+                                this.tab[x+1][y].setBackground(Color.YELLOW);
+                                x = x+1;
+                                Radar (x, y); // Récursivité
+                            }
+
                         }
 
                     }
@@ -120,11 +122,13 @@ public class ControllerJeu implements MouseListener {
                     if ( x>0 ) {
 
                         if ( ( this.tabTerm[x][y] == this.tabTerm[x-1][y] ) && ( this.bool[x-1][y] == 'F' ) ) {
-                            this.grp++;
-                            this.bool [x-1][y] = 'T';
-                            this.tab[x-1][y].setBackground(Color.YELLOW);
-                            x = x-1;
-                            Radar (x, y);
+                            if ( Boule(x-1, y) ) {
+                                this.grp++;
+                                this.bool [x-1][y] = this.tabTerm[x-1][y];
+                                this.tab[x-1][y].setBackground(Color.YELLOW);
+                                x = x-1;
+                                Radar (x, y);
+                            }
                         }
 
                     }
@@ -133,11 +137,13 @@ public class ControllerJeu implements MouseListener {
                     if ( y<14 ) {
 
                         if ( ( this.tabTerm[x][y] == this.tabTerm[x][y+1] ) && ( this.bool[x][y+1] == 'F' ) ) {
-                            this.grp++;
-                            this.bool[x][y+1] = 'T';
-                            this.tab[x][y+1].setBackground(Color.YELLOW);
-                            y = y+1;
-                            Radar(x, y);
+                            if ( Boule(x,y-1) ) {    
+                                this.grp++;
+                                this.bool[x][y+1] = this.tabTerm[x][y+1];
+                                this.tab[x][y+1].setBackground(Color.YELLOW);
+                                y = y+1;
+                                Radar(x, y);
+                            }
 
                         }
                     }
@@ -146,11 +152,13 @@ public class ControllerJeu implements MouseListener {
                     if ( y>0 ) {
                         
                         if ( ( this.tabTerm[x][y] == this.tabTerm[x][y-1] ) && ( this.bool[x][y-1] == 'F' ) ) {
-                            this.grp++;
-                            this.bool[x][y-1]= 'T';
-                            this.tab[x][y-1].setBackground(Color.YELLOW);
-                            y = y-1;
-                            Radar (x,y);
+                            if (Boule (x,y-1) ) {
+                                this.grp++;
+                                this.bool[x][y-1]= this.tabTerm[x][y-1];
+                                this.tab[x][y-1].setBackground(Color.YELLOW);
+                                y = y-1;
+                                Radar (x,y);
+                            }
                         }
                     }
 
@@ -237,7 +245,7 @@ public class ControllerJeu implements MouseListener {
         this.grp = 0; // Réinitialisation taille du groupe
 
         // Affichage terminal
-        System.out.println("MAJ Bool");
+        //System.out.println("MAJ Bool");
         // for (char[] tab: bool) {
         //     for (char bo: tab) {
         //         System.out.print(bo + " ");
@@ -275,7 +283,7 @@ public class ControllerJeu implements MouseListener {
 
             for (j=0; j<15; j++){
 
-                if (this.bool [i][j] == 'T'){
+                if (this.bool [i][j] == tabTerm[i][j]){
 
                     this.tab[i][j].setBackground(Color.WHITE);
                     this.tab[i][j].ResetBloc();
@@ -295,15 +303,10 @@ public class ControllerJeu implements MouseListener {
         // }
 
         if (Resultat () == true) {
-
             // Calcul du score
             this.resultat = this.resultat + Math.pow ( (this.grp - 2), 2 ); // Affichage
             System.out.println ("Score : "+this.resultat);
-            
-
-            Score al = new Score();
-            al.ChangerScore(this.resultat);
-
+            // this.score.ChangerScore(this.resultat);
         }
 
     }
@@ -377,15 +380,14 @@ public class ControllerJeu implements MouseListener {
 
             
         
-        if (End() == false) {
+        if (End() == true) {
 
             System.out.println ("Fin jeu");
-            MenuFin plateau = new MenuFin();
-            this.windows.dispose();
-
         }
             
         
+      
+
        
         //Affichage terminal 
         // System.out.println("\n");
@@ -406,44 +408,24 @@ public class ControllerJeu implements MouseListener {
 
     }
 
-    public boolean End () {
 
+    public boolean Boule (int x, int y){
         int i = 0, j = 0;
-        this.grp = 0;
 
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 10; i++){
 
-            for (j = 0; j < 15; j++) {
+            for (j = 0; j < 15; j++){
 
-                this.tab[i][j].setBackground(Color.WHITE);
+                if (this.bool [x][y] == this.tabTerm[i][j]) {
 
-                if ( (this.tabTerm[i][j] != 'X') && (this.bool [i][j] == 'F') ) {
-
-                    Radar (i, j);
-
-                    if (this.grp > 1.0) {
-
-                        
-                        return true;
-                    
-                    }
-                }                  
+                    return false;
+                }
             }
         }
 
-        for (i = 0; i < 10; i++) {
+        return true;
 
-            for (j = 0; j < 15; j++) {
-
-                this.bool [i][j] = 'F';
-            }
-        }
-
-
-        return false;
-    
     }
-
 
     /**
     * Méthode Resultat
@@ -457,7 +439,7 @@ public class ControllerJeu implements MouseListener {
 
             for (j = 0; j < 15; j++){
 
-                if (this.bool [i][j] == 'T') {
+                if (this.bool [i][j] == this.tabTerm [i][j]) {
 
                     return true;
                 }
@@ -549,7 +531,45 @@ public class ControllerJeu implements MouseListener {
     }
 
 
+    // public boolean End () {
+
+    //     int fin = 1, i = 0, j = 0;
+    //     this.grp = 0;
+
+    //     for (i = 0; i < 10; i++) {
+
+    //         for (j = 0; j < 15; j++) {
+
+    //             if ( (this.tabTerm[i][j] != 'X') && (this.bool [i][j] != '.') ) {
+
+    //                 Radar (i, j);
+
+    //                 if (this.grp != 0) {
+
+    //                     this.tab[i][j].setBackground(Color.WHITE);
+    //                     return true;
+    //                 }
+
+    //             }
+
+                  
+    //         }
+
+    //     }
+
+    //     for (i = 0; i < 10; i++) {
+
+    //         for (j = 0; j < 15; j++) {
+
+    //             this.bool[i][j] = 'F';
+    //         }
+    //     }
+
+    //     return false;
     
+    // }
+
+
 
 }
  

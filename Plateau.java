@@ -32,15 +32,12 @@ public class Plateau extends JFrame
             info.setBackground(Color.GRAY);
 
             Score score = new Score();
-            info.add (score);
 
-
-            //JLabel score = new JLabel("Score : ");
+            // JLabel score = new JLabel("Score : ");
             // Font police = new Font("Chilanka", Font.BOLD, 25);
             // score.setFont(police);
-            // info.add (score);
 
-
+            info.add (score);
 
             // Panneau du jeu
             JPanel jeu = new JPanel();

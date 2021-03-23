@@ -37,7 +37,7 @@ Plateau.class : Plateau.java GenerateurGrilleAleatoire.class Score.class
 LectureGrille.class : LectureGrille.java 
 	${JC} ${JCFLAGS} LectureGrille.java
 
-ControllerJeu.class : ControllerJeu.java Score.class
+ControllerJeu.class : ControllerJeu.java Score.class MenuFin.class
 	${JC} ${JCFLAGS} ControllerJeu.java
 
 GenerateurGrilleAleatoire.class : GenerateurGrilleAleatoire.java Bulbi.class Salameche.class Carapuce.class ControllerJeu.class
@@ -49,7 +49,8 @@ Bloc.class : Bloc.java
 Score.class : Score.java
 	${JC} ${JCFLAGS} Score.java
 
-
+MenuFin.class : MenuFin.java Menu.class
+	${JC} ${JCFLAGS} MenuFin.java
 
 
 

@@ -10,12 +10,14 @@ public class GenerateurGrilleAleatoire extends JPanel {
 
     /**Déclaration des variables*/
       protected char [][] tabTerm;
-      private JFrame fenetre;
+     
       private JPanel jeu;
+   
       protected Bloc[][] tab;
       protected char [][] bool;
       protected double grp = 0;
-    
+
+  
     
     /**
      * Méthode TabAl
@@ -32,6 +34,7 @@ public class GenerateurGrilleAleatoire extends JPanel {
         char bool [][] = new char [10][15];
         
         this.jeu = panel;
+     
    
 
 		Random random = new Random();
@@ -62,15 +65,8 @@ public class GenerateurGrilleAleatoire extends JPanel {
             }            
         }
 
-        //Affichage terminal 
-        // for (char[] tab: tabTerm) {
-        //     for (char s: tab) {
-        //         System.out.print(s + " ");
-        //     }
-        //     System.out.println("\n");
-        // }
-        
         jeu.addMouseListener(new ControllerJeu (tab, tabTerm, bool, grp));
+
     }
 
 
