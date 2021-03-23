@@ -12,7 +12,7 @@ public class GenerateurGrilleAleatoire extends JPanel {
       protected char [][] tabTerm;
      
       private JPanel jeu;
-   
+      private JFrame fenetre;
       protected Bloc[][] tab;
       protected char [][] bool;
       protected double grp = 0;
@@ -106,9 +106,5 @@ public class GenerateurGrilleAleatoire extends JPanel {
     public double getGrp (){
       return grp;
     }
-
- 
-
-
 
 }
