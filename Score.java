@@ -1,11 +1,13 @@
+import java.awt.*;
+import javax.swing.*;
+
 /**
  * La classe <code>Score</code> 
  * @version 1.0
  * @author Arthur DECORBEZ & Shana LEFEVRE
  */
 
-import java.awt.*;
-import javax.swing.*;
+
 
 public class Score extends JLabel {
 	
@@ -17,7 +19,7 @@ public class Score extends JLabel {
 	*/
 	 public Score() {
 	 	super();
-	 	this.score = 0;
+	 	
 		Font font = new Font("Chilanka", Font.BOLD, 25);
 		this.setFont(font);
 		this.setText("Score : " + this.score);

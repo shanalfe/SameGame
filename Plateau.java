@@ -14,8 +14,10 @@ public class Plateau extends JFrame
     * Initalisation de la fenetre
     */
     public Plateau(String mode)
+    
     {
         if(mode == "Random")
+
         {
             System.out.println("Random");
 
@@ -53,8 +55,11 @@ public class Plateau extends JFrame
             */
             GenerateurGrilleAleatoire al = new GenerateurGrilleAleatoire();
             al.TabAl(jeu);
+
         }
+
         else if(mode == "File")
+
         {
             System.out.println("File");
 

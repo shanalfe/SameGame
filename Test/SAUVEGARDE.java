@@ -12,9 +12,6 @@ import java.awt.event.*;
  * @see LectureGrille
  */
 public class ControllerJeu implements MouseListener {
-
-    private Plateau windows;
-
     
     /**
     * Composante du "plateau du jeu" 
@@ -70,7 +67,8 @@ public class ControllerJeu implements MouseListener {
         resultat = 0;
        
 
-        int i = 0, j = 0;        
+        int i = 0, j = 0;
+        
 
         for (i = 0; i < 10; i++ ) {
             
@@ -198,13 +196,13 @@ public class ControllerJeu implements MouseListener {
         System.out.println("Groupe : " +this.grp);
 
         // Affichage Terminal
-        // System.out.println("Tab bool");
-        // for (char[] tab: bool) {
-        //     for (char bo: tab) {
-        //         System.out.print(bo + " ");
-        //     }
-        //     System.out.println("\n");
-        // }
+        System.out.println("Tab bool");
+        for (char[] tab: bool) {
+            for (char bo: tab) {
+                System.out.print(bo + " ");
+            }
+            System.out.println("\n");
+        }
         // System.out.println("Tabterm");
         // for (char[] tab: tabTerm) {
         //     for (char ta: tab) {
@@ -301,8 +299,9 @@ public class ControllerJeu implements MouseListener {
             this.resultat = this.resultat + Math.pow ( (this.grp - 2), 2 ); // Affichage
             System.out.println ("Score : "+this.resultat);
             
-            Score sco = new Score ();
-            sco.ChangerScore (this.resultat);
+
+            Score al = new Score();
+            al.ChangerScore(this.resultat);
 
         }
 
@@ -377,14 +376,14 @@ public class ControllerJeu implements MouseListener {
 
             
         
-        if (End() == false) {
+        // if (End() == true) {
 
-            System.out.println ("Fin jeu");
-            MenuFin menufin = new MenuFin();
-            
-        }
+        //     System.out.println ("Fin jeu");
+        // }
             
         
+      
+
        
         //Affichage terminal 
         // System.out.println("\n");
@@ -403,44 +402,6 @@ public class ControllerJeu implements MouseListener {
         //     System.out.println("\n");
         // }
 
-    }
-
-    public boolean End () {
-
-        int i = 0, j = 0;
-        this.grp = 0;
-
-        for (i = 0; i < 10; i++) {
-
-            for (j = 0; j < 15; j++) {
-
-                this.tab[i][j].setBackground(Color.WHITE);
-
-                if ( (this.tabTerm[i][j] != 'X') && (this.bool [i][j] == 'F') ) {
-
-                    Radar (i, j);
-
-                    if (this.grp > 1.0) {
-
-                        
-                        return true;
-                    
-                    }
-                }                  
-            }
-        }
-
-        for (i = 0; i < 10; i++) {
-
-            for (j = 0; j < 15; j++) {
-
-                this.bool [i][j] = 'F';
-            }
-        }
-
-
-        return false;
-    
     }
 
 
@@ -548,7 +509,44 @@ public class ControllerJeu implements MouseListener {
     }
 
 
+    // public boolean End () {
+
+    //     int fin = 1, i = 0, j = 0;
+    //     this.grp = 0;
+
+    //     for (i = 0; i < 10; i++) {
+
+    //         for (j = 0; j < 15; j++) {
+
+    //             if ( (this.tabTerm[i][j] != 'X') && (this.bool [i][j] != '.') ) {
+
+    //                 Radar (i, j);
+
+    //                 if (this.grp != 0) {
+
+    //                     this.tab[i][j].setBackground(Color.WHITE);
+    //                     return true;
+    //                 }
+
+    //             }
+
+                  
+    //         }
+
+    //     }
+
+    //     for (i = 0; i < 10; i++) {
+
+    //         for (j = 0; j < 15; j++) {
+
+    //             this.bool[i][j] = 'F';
+    //     }
+
+    //     return false;
     
+    // }
+
+
 
 }
  

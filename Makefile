@@ -49,10 +49,11 @@ Bloc.class : Bloc.java
 Score.class : Score.java
 	${JC} ${JCFLAGS} Score.java
 
-MenuFin.class : MenuFin.java Menu.class
+MenuFin.class : MenuFin.java Menu.class ControllerMenuFin.class 
 	${JC} ${JCFLAGS} MenuFin.java
 
-
+ControllerMenuFin.class : ControllerMenuFin.java
+	${JC} ${JCFLAGS} ControllerMenuFin.java
 
 
 
