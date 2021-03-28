@@ -46,8 +46,7 @@ public class ControllerJeu extends JFrame implements MouseListener {
     * Composante du score
     */
     private JLabel score;
-
-    static Plateau window;
+    private JFrame fenetre;
 
 
     // public ControllerJeu (Score score) {
@@ -61,12 +60,13 @@ public class ControllerJeu extends JFrame implements MouseListener {
      * @param grp : récupération de la variable pour calculer la taille du groupe
      * @param score : récupération du score
      */
-    public ControllerJeu (Bloc[][] tab, char [][]tabTerm, char [][] bool, double grp, JLabel score) {
+    public ControllerJeu (Bloc[][] tab, char [][]tabTerm, char [][] bool, double grp, JLabel score, JFrame fenetre) {
 
         //Déclaration et récupération des variables 
 
         super ();
         this.score = score;
+        this.fenetre = fenetre;
         this.tab = tab;
         this.tabTerm = tabTerm;       
         this.bool = bool; // tableau qui s'utilise comme booleen
@@ -332,7 +332,7 @@ public class ControllerJeu extends JFrame implements MouseListener {
         if (End() == false) {
 
             System.out.println ("Fin jeu");
-            window.dispose();
+            this.fenetre.dispose();
             MenuFin menufin = new MenuFin();
 
             

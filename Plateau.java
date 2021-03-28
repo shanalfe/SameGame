@@ -10,6 +10,7 @@ public class Plateau extends JFrame
 {
 
     public JLabel score;
+    public JFrame fenetre;
 
     /**
     * Constructeur de la classe Plateau
@@ -53,10 +54,10 @@ public class Plateau extends JFrame
             * Appel de la classe GenerateurGrilleAleatoire
             * Permet aussi l'affichage sur le JPanel jeu
             */
-            GenerateurGrilleAleatoire al = new GenerateurGrilleAleatoire(score);
+            GenerateurGrilleAleatoire al = new GenerateurGrilleAleatoire(score, fenetre);
             al.TabAl(jeu);
 
-            ControllerJeu.window = this;
+
 
         }
 
