@@ -2,8 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
-* Classe Plateau 
-* Créé le plateau du jeu 
+* La classe <code>Plateau</code> créé la fenetre du jeu
 * @version 1.0
 * @author Arthur DECORBEZ & Shana LEFEVRE
 */
@@ -36,11 +35,9 @@ public class Plateau extends JFrame
             fenetre.add(info, BorderLayout.NORTH);
             info.setBackground(Color.GRAY);
 
-            JLabel score = new JLabel ("Score : 0");
-           
-            // JLabel score = new JLabel("Score : ");
-            // Font police = new Font("Chilanka", Font.BOLD, 25);
-            // score.setFont(police);
+            JLabel score = new JLabel ("Score : 0");           
+            Font police = new Font("Chilanka", Font.BOLD, 25);
+            score.setFont(police);
 
             info.add (score);
 
@@ -58,6 +55,8 @@ public class Plateau extends JFrame
             */
             GenerateurGrilleAleatoire al = new GenerateurGrilleAleatoire(score);
             al.TabAl(jeu);
+
+            ControllerJeu.window = this;
 
         }
 

@@ -4,55 +4,57 @@ import java.awt.event.*;
 
 
 /**
- * Class <code>ControllerJeu</code>
- *  Permet de gérer les évenements de la souris et donc la gestion du jeu 
+ *La classe <code>ControlleurJeu </code>
+ *  Permet de gérer les évenements de la souris et la gestion du jeu 
  * @version 1.0
  * @author Arthur DECORBEZ & Shana LEFEVRE
  * @see GenerateurGrilleAleatoire
  * @see LectureGrille
  */
-public class ControllerJeu implements MouseListener {
+public class ControllerJeu extends JFrame implements MouseListener {
 
-    
-    
     /**
     * Composante du "plateau du jeu" 
     */
     private JPanel jeu;
-  
+
      /**
     * Composante du tableau généré sur le terminal
     * X -> Bloc non existant, R-> bloc rouge, V-> bloc vert, B-> bloc bleu
     */
-    protected char [][] tabTerm;
+     protected char [][] tabTerm;
      /**
     * Composante de l'affichage des blocs
     */
-    protected Bloc[][] tab;
+     protected Bloc[][] tab;
      /**
     * Composante du tableau pour vérifier les status d'une sélection
     * T -> bloc appartient à un groupe, F -> bloc appartient pas a un groupe
     * . -> bloc n'existe plus donc pas de status
     */
-    protected char [][] bool;
+     protected char [][] bool;
      /**
     * Composante de la taille d'un groupe
     */
-    protected double grp = 0;
+     protected double grp = 0;
      /**
     * Composante du score
     */
-    private double resultat;
+     private double resultat;
 
+    /**
+    * Composante du score
+    */
     private JLabel score;
 
-   
+    static Plateau window;
+
+
     // public ControllerJeu (Score score) {
     //     this.score = score;
     // }
 
     /**
-     * Constructeur ControllerJeu
      * @param tab : récupération du tableau Bloc 
      * @param tabTerm : récupération du tableau terminal
      * @param bool : récupération du tableau 
@@ -60,7 +62,7 @@ public class ControllerJeu implements MouseListener {
      * @param score : récupération du score
      */
     public ControllerJeu (Bloc[][] tab, char [][]tabTerm, char [][] bool, double grp, JLabel score) {
-        
+
         //Déclaration et récupération des variables 
 
         super ();
@@ -72,26 +74,25 @@ public class ControllerJeu implements MouseListener {
         grp = 0;
         this.resultat = resultat;
         resultat = 0;
-       
+
 
         int i = 0, j = 0;        
 
         for (i = 0; i < 10; i++ ) {
-            
+
             for (j = 0; j < 15;j++ ) {
-                
+
                 this.bool[i][j] = 'F';
                 this.tab[i][j].addMouseListener(this);
                 this.tab[i][j].setBackground(Color.WHITE);
-                                            
+
             }
         }
 
-     
+
     }
 
     /**
-    * Méthode Radar
     *   Permet la détection d'un groupe d'un bloc, utilisé par la méthode mouseEntered
     *   Utilisation d'un tab comme booléen : bool[][].
     *       Si F -> alors la case n'appartient pas au groupe
@@ -104,18 +105,18 @@ public class ControllerJeu implements MouseListener {
         // Déclaration des variables
         int i = 0, j = 0;
         
-            for (i = 0; i<10; i++){
+        for (i = 0; i<10; i++){
 
-                 for (j = 0; j<15; j++){
+           for (j = 0; j<15; j++){
 
                     // Vérife bas
-                    if ( x<9){
+            if ( x<9){
 
-                        if ( ( this.tabTerm[x][y] == this.tabTerm[x+1][y] ) && ( this.bool[x+1][y] == 'F' ) ) {
-                            this.grp++;
-                            this.bool [x+1][y] = 'T';
-                            this.tab[x+1][y].setBackground(Color.YELLOW);
-                            x = x+1;
+                if ( ( this.tabTerm[x][y] == this.tabTerm[x+1][y] ) && ( this.bool[x+1][y] == 'F' ) ) {
+                    this.grp++;
+                    this.bool [x+1][y] = 'T';
+                    this.tab[x+1][y].setBackground(Color.YELLOW);
+                    x = x+1;
                             Radar (x, y); // Récursivité
                         }
 
@@ -149,7 +150,7 @@ public class ControllerJeu implements MouseListener {
 
                     // vérifie gauche
                     if ( y>0 ) {
-                        
+
                         if ( ( this.tabTerm[x][y] == this.tabTerm[x][y-1] ) && ( this.bool[x][y-1] == 'F' ) ) {
                             this.grp++;
                             this.bool[x][y-1]= 'T';
@@ -162,34 +163,25 @@ public class ControllerJeu implements MouseListener {
                 }
             }
 
-            // Affichage
-            //System.out.println("Initialisation bool");
-            // for (char[] tab: bool) {
-            //     for (char bo: tab) {
-            //         System.out.print(bo + " ");
-            //     }
-            //     System.out.println("\n");
-            // }
-        
-    }
-    
 
-    @Override 
+        }
+
+
+        @Override 
     /**
-     * Méthode mouseEnterd
      *  Permet de séléctionner un groupe
      */
     public void mouseEntered (MouseEvent evenement){
-        
+
         // Déclaration des variables
         int i = 0, j = 0;
         
         for (i = 0; i <10; i ++){
-            
+
             for (j = 0; j < 15; j ++){
-            
+
                 if ( (evenement.getSource() == tab[i][j]) && (this.tabTerm [i][j] != 'X')  ){
-                                         
+
                     this.tab[i][j].setOpaque(true);
                     this.tab[i][j].setBackground(Color.YELLOW);
                     
@@ -201,34 +193,16 @@ public class ControllerJeu implements MouseListener {
 
         System.out.println("Groupe : " +this.grp);
 
-        // Affichage Terminal
-        // System.out.println("Tab bool");
-        // for (char[] tab: bool) {
-        //     for (char bo: tab) {
-        //         System.out.print(bo + " ");
-        //     }
-        //     System.out.println("\n");
-        // }
-        // System.out.println("Tabterm");
-        // for (char[] tab: tabTerm) {
-        //     for (char ta: tab) {
-        //         System.out.print(ta + " ");
-        //     }
-        //     System.out.println("\n");
-        // }
-
-
     }    
     
     /**
-    *Méthode mouseExited
-    * Quand l'utilisateur quitte le composant 
+    * Quand l'utilisateur quitte le composant.
     * On concidèrera qu'il ne s'est rien passé donc on reset les valeurs générées par 
     * la méthode mouseEntered
     */
     @Override
     public void mouseExited(MouseEvent e) {
-        
+
         // Déclaration des variables
         int i = 0, j = 0;
 
@@ -241,38 +215,30 @@ public class ControllerJeu implements MouseListener {
         }
         this.grp = 0; // Réinitialisation taille du groupe
 
-        // Affichage terminal
         System.out.println("MAJ Bool");
-        // for (char[] tab: bool) {
-        //     for (char bo: tab) {
-        //         System.out.print(bo + " ");
-        //     }
-        //     System.out.println("\n");
-        // }
+
 
     }
 
 
     @Override
     /**
-     * Méthode mouseClicked
-     *  Permet de gérer l'evenement clique (enfoncé + relaché) de la souris
+     * Permet de gérer l'evenement clique (enfoncé + relaché) de la souris
      * On vérifie à chaque clique si fin du jeu il y a.
      * 
      */
     public void mouseClicked​(MouseEvent e){
-        
+
     }
 
 
     @Override
     /**
-    * Méthode mousePressed
-    *   Permet l'évènement quand le bouton de la souris est enfoncé
+    *   Permet l'évènement quand le bouton de la souris est enfoncé.
     *   Dans cette méthode, on supprime et on calcule le score
     */  
     public void mousePressed​(MouseEvent e){
-        
+
         // Déclaration des variables
         int i = 0, j=0;
 
@@ -290,22 +256,15 @@ public class ControllerJeu implements MouseListener {
                 
             }
         }
-        // Affichage terminal 
-        // System.out.println("TabTerm après suppression");
-        // for (char[] tab: tabTerm) {
-        //     for (char s: tab) {
-        //         System.out.print(s + " ");
-        //     }
-        //     System.out.println("\n");
-        // }
 
+        // Vérification
         if (Resultat () == true) {
 
             // Calcul du score
             this.resultat = this.resultat + Math.pow ( (this.grp - 2), 2 ); // Affichage
             System.out.println ("Score : "+this.resultat);
             this.score.setText ("Score : " + (int)this.resultat);
-         
+
         }
 
     }
@@ -313,34 +272,25 @@ public class ControllerJeu implements MouseListener {
 
     @Override
     /**
-    * Méthode mouseReleased
     *   Permet de gérer l'évènement quand le bouton de la souris est relaché
     *   On réinitialisera toutes les valeurs dans cette méthode
     */
     public void mouseReleased​(MouseEvent e){
-        
+
         // Déclaration des variables
         int i = 0, j = 0;
 
-        //Affichage terminal 
         System.out.println("Décalage fait");
-        // for (char[] tab: tabTerm) {
-        //     for (char s: tab) {
-        //         System.out.print(s + " ");
-        //     }
-        //     System.out.println("\n");
-        // }
 
-       
         for (i = 0; i < 10; i++){
 
             for (j = 0; j < 15; j++){
-               
+
                 this.tab[i][j].setForeground (Color.WHITE);   
 
                  // Détection lignes vides
                 if (this.tabTerm[i][j] == 'X'){
-                   
+
                     OrganiserLignes (j);
                     
                 }
@@ -351,20 +301,20 @@ public class ControllerJeu implements MouseListener {
         
          // Détection colonne vides
         for (j = 0; j < 15; j++){
-            
+
             if ( this.VerificationCol(j) == true){
-               
-               CopyColonne ();
-            }            
-        }
+
+             CopyColonne ();
+         }            
+     }
 
 
         // Réinitialisation 
-        for (i = 0; i < 10; i++){
+     for (i = 0; i < 10; i++){
 
-            for (j = 0; j < 15; j++){
+        for (j = 0; j < 15; j++){
 
-                if (this.tabTerm [i][j] == 'X') {
+            if (this.tabTerm [i][j] == 'X') {
 
                     this.bool [i][j] = '.'; // status non compatible avec une case vide
 
@@ -374,39 +324,28 @@ public class ControllerJeu implements MouseListener {
                 }
             }
         }
+
         this.grp = 0;
 
 
-            
-        
+        // Detection fin de jeu
         if (End() == false) {
 
             System.out.println ("Fin jeu");
+            window.dispose();
             MenuFin menufin = new MenuFin();
+
             
         }
-            
-        
-       
-        //Affichage terminal 
-        // System.out.println("\n");
-        // for (char[] tab: tabTerm) {
-        //     for (char s: tab) {
-        //         System.out.print(s + " ");
-        //     }
-        //     System.out.println("\n");
-        // }
+
         System.out.println("Tab Bool réinitialisationCliqued");
-        // System.out.println("\n");
-        // for (char[] tab: bool) {
-        //     for (char b: tab) {
-        //         System.out.print(b + " ");
-        //     }
-        //     System.out.println("\n");
-        // }
 
     }
 
+
+    /**
+    * Méthode qui permet de vérifier s'il y a la possibilité de faire des groupes
+    */
     public boolean End () {
 
         int i = 0, j = 0;
@@ -424,9 +363,9 @@ public class ControllerJeu implements MouseListener {
 
                     if (this.grp > 1.0) {
 
-                        
+
                         return true;
-                    
+
                     }
                 }                  
             }
@@ -440,15 +379,13 @@ public class ControllerJeu implements MouseListener {
             }
         }
 
-
         return false;
-    
+
     }
 
 
     /**
-    * Méthode Resultat
-    * Permet de gagner des points QUE quand l'utilisateur clique sur un groupe
+    * Méthode qui permet de gagner des points QUE quand l'utilisateur clique sur un groupe
     */
     public boolean Resultat () {
 
@@ -470,25 +407,24 @@ public class ControllerJeu implements MouseListener {
 
 
     /**
-    * Méthode OrganiserLigne
-    *   Permet de déplacer les blocs vers le bas s'il y a une case vide
+    *  Méthode permet de déplacer les blocs vers le bas s'il y a une case vide
     * @param j : Récupère une colonne
     */
     public void OrganiserLignes (int j) {
-        
+
         // Déclaration des variables
         int i;
         char color;
 
         for ( i = 9; i > 0; i--) {
-           
+
             if(this.tabTerm[i][j] == 'X') {
 
                 color = this.tabTerm[i-1][j];
-               
+
                 this.tab[i-1][j].ChangerBloc('b');
                 this.tabTerm[i-1][j] = 'X';
-        
+
                 this.tab[i][j].ChangerBloc(color);                
                 this.tabTerm [i][j] = color;
             }
@@ -497,8 +433,7 @@ public class ControllerJeu implements MouseListener {
 
 
     /**
-    * Méthode CopyColonne
-    *   Permet l'affichage
+    *  Méthode qui permet le déplacement des colonne et affiche la nouvelle grille. 
     */
     public void CopyColonne () {
 
@@ -530,18 +465,18 @@ public class ControllerJeu implements MouseListener {
 
 
     /**
-    * Méthode VerificationCol
+    * Méthode qui permet de vérifier si la colonne est vide
     * @param j : prend une colonne précise
-    *   Permet de vérifier si une colonne est vide
+    *   
     */
     public boolean VerificationCol (int j) {
 
         int i = 0;
 
         for (i=0; i <10; i++){
-            
+
             if (this.tabTerm[i][j] != 'X'){
-                
+
                 return false;
             }
         }
@@ -550,15 +485,14 @@ public class ControllerJeu implements MouseListener {
     }
 
 
-
+    /**
+    * Renvoie le résultat obtenu à chaque clique
+    * @return resultat
+    */
     public double getScore () {
         return this.resultat;
     }
 
-
-
-
     
 
 }
- 

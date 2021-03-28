@@ -2,17 +2,20 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * Classe <code>Bloc</code> 
- *  Déssine les blocs en fonction de sa correspondance
- * 
+ * Classe <code>Bloc</code> qui déssine les blocs en fonction de sa correspondance
  * @version 1.0
  * @author Arthur DECORBEZ & Shana LEFEVRE
  */
 
 public class Bloc extends JPanel {
 
-    /**Déclaration de variables */
+    /**
+    * Création des images qui représentent chacune un bloc
+    */
     protected Image imageBloc;
+    /**
+    * Représente la couleur d'un bloc en fonction d'une image
+    */
     protected char color;
 
 
@@ -26,9 +29,8 @@ public class Bloc extends JPanel {
     @Override
 
     /**
-     * Méthode paintComponent
-     *  Génère les images pour blocs selon la classe GenerateurGrilleAleatoire
-     */
+    * Permet la génération des images selon la couleur
+    */
 	public void paintComponent(Graphics c) {
         
         Graphics secondPinceau = c.create();
@@ -70,19 +72,18 @@ public class Bloc extends JPanel {
 
 
     /**
-    * Méthode ResetBloc
-    *   Permet de réinitialiser la couleur
+    *   Permet de réinitialiser le bloc
     */
-    public void ResetBloc (){
+    public void ResetBloc () {
         this.color = 'b';
     }
 
 
     /**
-    * Méthode ChangerBloc
-    *   Permet de changer le type du bloc à x,y position
+    *  Permet de changer le type du bloc à x et y position
+    * @param c Prend en argument la couleur
     */
-    public void ChangerBloc (char c){
+    public void ChangerBloc (char c) {
         this.color = c;
         this.repaint ();
     }
