@@ -49,10 +49,6 @@ public class ControllerJeu extends JFrame implements MouseListener {
     private JFrame fenetre;
 
 
-    // public ControllerJeu (Score score) {
-    //     this.score = score;
-    // }
-
     /**
      * @param tab : récupération du tableau Bloc 
      * @param tabTerm : récupération du tableau terminal
@@ -333,7 +329,7 @@ public class ControllerJeu extends JFrame implements MouseListener {
 
             System.out.println ("Fin jeu");
             this.fenetre.dispose();
-            MenuFin menufin = new MenuFin();
+            MenuFin menufin = new MenuFin(this.resultat);
 
             
         }

@@ -8,16 +8,17 @@ import javax.swing.*;
 */
 public class MenuFin extends JFrame {
 
-   
+   public JLabel score;
+   private double resultat;
     
     /**
     * Constructeur MenuFin
     *   Menu fin du jeu
     */
-    public MenuFin() {
-
+    public MenuFin(double resultat) {
             
         super ();
+        this.resultat = resultat;
         this.setTitle ("SameGame");
         this.setSize (800,600);
         this.setLocation (200,200);
@@ -25,6 +26,16 @@ public class MenuFin extends JFrame {
         
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Panneau des scores
+        JPanel info = new JPanel();
+        this.add(info, BorderLayout.NORTH);
+        info.setBackground(Color.GRAY);
+
+        JLabel score = new JLabel ("Score total : " +(int)this.resultat);           
+        Font police = new Font("Chilanka", Font.BOLD, 25);
+        score.setFont(police);
+        info.add (score);
 
 
         // Paneau bouton
