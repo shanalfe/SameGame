@@ -17,6 +17,13 @@ public class GenerateurGrilleAleatoire extends JPanel {
       protected char [][] bool;
       protected double grp = 0;
 
+      public JLabel score;
+      public GenerateurGrilleAleatoire (JLabel score) {
+
+        this.score= score;
+
+      }
+
   
     
     /**
@@ -65,7 +72,7 @@ public class GenerateurGrilleAleatoire extends JPanel {
             }            
         }
 
-        jeu.addMouseListener(new ControllerJeu (tab, tabTerm, bool, grp));
+        jeu.addMouseListener(new ControllerJeu (tab, tabTerm, bool, grp, score));
 
     }
 

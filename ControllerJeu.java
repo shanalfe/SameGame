@@ -13,8 +13,7 @@ import java.awt.event.*;
  */
 public class ControllerJeu implements MouseListener {
 
-    private Plateau windows;
-
+    
     
     /**
     * Composante du "plateau du jeu" 
@@ -43,10 +42,14 @@ public class ControllerJeu implements MouseListener {
      /**
     * Composante du score
     */
-    public double resultat;
+    private double resultat;
+
+    private JLabel score;
 
    
-
+    // public ControllerJeu (Score score) {
+    //     this.score = score;
+    // }
 
     /**
      * Constructeur ControllerJeu
@@ -56,11 +59,12 @@ public class ControllerJeu implements MouseListener {
      * @param grp : récupération de la variable pour calculer la taille du groupe
      * @param score : récupération du score
      */
-    public ControllerJeu (Bloc[][] tab, char [][]tabTerm, char [][] bool, double grp) {
+    public ControllerJeu (Bloc[][] tab, char [][]tabTerm, char [][] bool, double grp, JLabel score) {
         
         //Déclaration et récupération des variables 
 
         super ();
+        this.score = score;
         this.tab = tab;
         this.tabTerm = tabTerm;       
         this.bool = bool; // tableau qui s'utilise comme booleen
@@ -300,10 +304,8 @@ public class ControllerJeu implements MouseListener {
             // Calcul du score
             this.resultat = this.resultat + Math.pow ( (this.grp - 2), 2 ); // Affichage
             System.out.println ("Score : "+this.resultat);
-            
-            Score sco = new Score ();
-            sco.ChangerScore (this.resultat);
-
+            this.score.setText ("Score : " + (int)this.resultat);
+         
         }
 
     }
@@ -347,7 +349,7 @@ public class ControllerJeu implements MouseListener {
         }
 
         
-         // Détection lignes vides
+         // Détection colonne vides
         for (j = 0; j < 15; j++){
             
             if ( this.VerificationCol(j) == true){
@@ -546,6 +548,14 @@ public class ControllerJeu implements MouseListener {
 
         return true;
     }
+
+
+
+    public double getScore () {
+        return this.resultat;
+    }
+
+
 
 
     

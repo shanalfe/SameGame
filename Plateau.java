@@ -9,6 +9,9 @@ import javax.swing.*;
 */
 public class Plateau extends JFrame
 {
+
+    public JLabel score;
+
     /**
     * Constructeur de la classe Plateau
     * Initalisation de la fenetre
@@ -33,8 +36,8 @@ public class Plateau extends JFrame
             fenetre.add(info, BorderLayout.NORTH);
             info.setBackground(Color.GRAY);
 
-            Score score = new Score();
-
+            JLabel score = new JLabel ("Score : 0");
+           
             // JLabel score = new JLabel("Score : ");
             // Font police = new Font("Chilanka", Font.BOLD, 25);
             // score.setFont(police);
@@ -53,7 +56,7 @@ public class Plateau extends JFrame
             * Appel de la classe GenerateurGrilleAleatoire
             * Permet aussi l'affichage sur le JPanel jeu
             */
-            GenerateurGrilleAleatoire al = new GenerateurGrilleAleatoire();
+            GenerateurGrilleAleatoire al = new GenerateurGrilleAleatoire(score);
             al.TabAl(jeu);
 
         }
