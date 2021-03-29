@@ -2,34 +2,35 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * Classe <code>Bloc</code> qui déssine les blocs en fonction de sa correspondance
+ * La classe <code>Bloc</code> qui dessine les blocs en fonction de sa correspondance.
  * @version 1.0
  * @author Arthur DECORBEZ & Shana LEFEVRE
  */
-
 public class Bloc extends JPanel {
 
     /**
-    * Création des images qui représentent chacune un bloc
+    * Composante des images qui représentent chacune un bloc.
     */
     protected Image imageBloc;
     /**
-    * Représente la couleur d'un bloc en fonction d'une image
+    * Composante de la couleur d'un bloc en fonction d'une image.
     */
     protected char color;
 
 
     /**
-     * Constructeur de Bloc 
+     * Le constructeur destiné à d'appeler les méthodes de la classe parent.
      */
     public Bloc () {
+
         super ();
     }
 
     @Override
 
     /**
-    * Permet la génération des images selon la couleur
+    * La méthode permet la génération des images selon la couleur.
+    * @param c 
     */
 	public void paintComponent(Graphics c) {
         
@@ -64,32 +65,29 @@ public class Bloc extends JPanel {
             secondPinceau.setColor(Color.WHITE);
             secondPinceau.drawOval(0, 0, 50, 50);
             secondPinceau.fillOval(0, 0, 50, 50);
-        
         }
-
     
     }
 
 
     /**
-    *   Permet de réinitialiser le bloc
+    *  La méthode permet de réinitialiser le bloc.
     */
     public void ResetBloc () {
+
         this.color = 'b';
     }
 
 
     /**
-    *  Permet de changer le type du bloc à x et y position
-    * @param c Prend en argument la couleur
+    *  La méthode permet de changer le type du bloc à x et y position.
+    * @param c prend en argument la couleur.
     */
     public void ChangerBloc (char c) {
+
         this.color = c;
         this.repaint ();
     }
-
-
-
    
 
 }

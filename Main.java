@@ -4,13 +4,12 @@ import javax.swing.JComponent;
 import java.awt.Graphics;
 
 /**
- * Classe Main
- * 	Contenant le coeur du jeu
+ * La classe <code>Main</code> contient le main de notre programme.
  * @version 1.0
  * @author Arthur DECORBEZ & Shana LEFEVRE
  */
-
 public class Main {
+	
 	public static void main(String[] args) {
 		
 		Menu windows = new Menu ();

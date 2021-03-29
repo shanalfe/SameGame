@@ -2,18 +2,25 @@ import java.awt.*;
 import javax.swing.*;
 
 
-
 /** 
-* Classe MenuFin
+* La classe <code>MenuFin</code> permet de générer le menu de fin et propose au joueur de rejouer ou bien de quitter le jeu.
+* @version 1.0
+* @author Arthur DECORBEZ & Shana LEFEVRE
 */
 public class MenuFin extends JFrame {
 
-   public JLabel score;
-   private double resultat;
+    /*
+    * Composante du JLabel du score
+    */
+    public JLabel score;
+    /**
+    * Composante du score
+    */
+    private double resultat;
+
     
     /**
-    * Constructeur MenuFin
-    *   Menu fin du jeu
+    *  Le construteur permet la création du menu de fin avec les différents panneaux, boutons etc...
     */
     public MenuFin(double resultat) {
             
@@ -48,15 +55,15 @@ public class MenuFin extends JFrame {
         JLabel image = new JLabel( new ImageIcon( "salameche.jpg"));
         fond.add(image);
         this.add (fond, BorderLayout.CENTER);
+
     
-        
+        // Stylisation des boutons
         JButton rejouer = new JButton("Rejouer");
         rejouer.setPreferredSize(new Dimension(200,50));
         rejouer.setBackground (Color.RED);
         rejouer.setForeground (Color.WHITE);
         rejouer.setBorder (BorderFactory.createLineBorder(Color.ORANGE,5));        
         boutton.add (rejouer);
-
             
         JButton quitter = new JButton ("Quitter");
         quitter.setPreferredSize(new Dimension(200,50));
@@ -64,16 +71,14 @@ public class MenuFin extends JFrame {
         quitter.setForeground (Color.WHITE);
         quitter.setBorder (BorderFactory.createLineBorder(Color.ORANGE,5));
         boutton.add (quitter);
+
     
-        
-        /**
-         * Appel de la classe ControllerMenuFin
-         *  Gestion des événements
-         */
+        // Appel du controlleur 
         ControllerMenuFin a = new ControllerMenuFin (this);
         rejouer.addActionListener(a);
         quitter.addActionListener (a);
 
     }
+
 }
 
