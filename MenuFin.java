@@ -52,7 +52,7 @@ public class MenuFin extends JFrame {
        
         // Panneau fond 
         JPanel fond = new JPanel();     
-        JLabel image = new JLabel( new ImageIcon( "fond.jpg"));
+        JLabel image = new JLabel( new ImageIcon( "./Image/fond.jpg"));
         fond.add(image);
         this.add (fond, BorderLayout.CENTER);
 

@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import java.io.*;
 
 /**
 * La classe <code>Plateau</code> créé la fenetre du jeu
@@ -9,97 +10,92 @@ import javax.swing.*;
 public class Plateau extends JFrame
 {
 
-    public JLabel score;
-    public JFrame fenetre;
+	public JLabel score;
+	public JFrame fenetre;
 
-    /**
-    * Constructeur de la classe Plateau
-    * Initalisation de la fenetre
-    */
-    public Plateau(String mode)
-    
-    {
-        if(mode == "Random")
+	/**
+	* Constructeur de la classe Plateau
+	* Initalisation de la fenetre
+	*/
+	public Plateau(String mode, File file)
+	{
+		if(mode == "Random")
+		{
+			System.out.println("Random");
 
-        {
-            System.out.println("Random");
+			JFrame fenetre = new JFrame("~ SameGame ~");
+			fenetre.setSize(800, 600);
+			fenetre.setLocation(200, 200);
+			fenetre.setResizable(false);
+			fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			fenetre.setVisible(true);
 
-            JFrame fenetre = new JFrame("~ SameGame ~");
-            fenetre.setSize(800, 600);
-            fenetre.setLocation(200, 200);
-            fenetre.setResizable(false);
-            fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            fenetre.setVisible(true);
+			// Panneau des scores
+			JPanel info = new JPanel();
+			fenetre.add(info, BorderLayout.NORTH);
+			info.setBackground(Color.GRAY);
 
-            // Panneau des scores
-            JPanel info = new JPanel();
-            fenetre.add(info, BorderLayout.NORTH);
-            info.setBackground(Color.GRAY);
+			JLabel score = new JLabel ("Score : 0");		   
+			Font police = new Font("Chilanka", Font.BOLD, 25);
+			score.setFont(police);
 
-            JLabel score = new JLabel ("Score : 0");           
-            Font police = new Font("Chilanka", Font.BOLD, 25);
-            score.setFont(police);
+			info.add (score);
 
-            info.add (score);
+			// Panneau du jeu
+			JPanel jeu = new JPanel();
+			fenetre.add(jeu, BorderLayout.CENTER);
 
-            // Panneau du jeu
-            JPanel jeu = new JPanel();
-            fenetre.add(jeu, BorderLayout.CENTER);
+			// Création de la grille
+			jeu.setLayout(new GridLayout(10, 15));
+			jeu.setBackground(Color.BLUE);
 
-            // Création de la grille
-            jeu.setLayout(new GridLayout(10, 15));
-            jeu.setBackground(Color.BLUE);
+			/**
+			* Appel de la classe GenerateurGrilleAleatoire
+			* Permet aussi l'affichage sur le JPanel jeu
+			*/
+			GenerateurGrilleAleatoire al = new GenerateurGrilleAleatoire(score, fenetre);
+			al.TabAl(jeu);
+		}
+		else if(mode == "File")
+		{
+			System.out.println("File");
 
-            /**
-            * Appel de la classe GenerateurGrilleAleatoire
-            * Permet aussi l'affichage sur le JPanel jeu
-            */
-            GenerateurGrilleAleatoire al = new GenerateurGrilleAleatoire(score, fenetre);
-            al.TabAl(jeu);
+			JFrame fenetre = new JFrame("~ SameGame ~");
+			fenetre.setSize(800, 600);
+			fenetre.setLocation(200, 200);
+			fenetre.setResizable(false);
+			fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			fenetre.setVisible(true);
 
+			/*
+			* Panneau des scores
+			*/
+			JPanel info = new JPanel();
+			fenetre.add(info, BorderLayout.NORTH);
+			info.setBackground(Color.GRAY);
+			JLabel score = new JLabel("Score : ");
 
+			Font police = new Font("Chilanka", Font.BOLD, 25);
+			score.setFont(police);
+			info.add (score);
 
-        }
+			/*
+			* Panneau du jeu
+			*/
+			JPanel jeu = new JPanel();
+			fenetre.add(jeu, BorderLayout.CENTER);
 
-        else if(mode == "File")
+			/*
+			* Création de la grille
+			*/
+			jeu.setLayout(new GridLayout(10, 15));
+			jeu.setBackground(Color.BLUE);
 
-        {
-            System.out.println("File");
-
-            JFrame fenetre = new JFrame("~ SameGame ~");
-            fenetre.setSize(800, 600);
-            fenetre.setLocation(200, 200);
-            fenetre.setResizable(false);
-            fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            fenetre.setVisible(true);
-
-            /*
-            * Panneau des scores
-            */
-            JPanel info = new JPanel();
-            fenetre.add(info, BorderLayout.NORTH);
-            info.setBackground(Color.GRAY);
-            JLabel score = new JLabel("Score : ");
-
-            Font police = new Font("Chilanka", Font.BOLD, 25);
-            score.setFont(police);
-            info.add (score);
-
-            /*
-            * Panneau du jeu
-            */
-            JPanel jeu = new JPanel();
-            fenetre.add(jeu, BorderLayout.CENTER);
-
-            /*
-            * Création de la grille
-            */
-            jeu.setLayout(new GridLayout(10, 15));
-            jeu.setBackground(Color.BLUE);
-
-            /*
-            * Appel de la classe LectureGrille.java
-            */
-        }
-    }
+			/*
+			* Appel de la classe LectureGrille.java
+			*/
+			LectureGrille lectureGrille = new LectureGrille(score, fenetre);
+			lectureGrille.tabGrille(jeu, file);
+		}
+	}
 }

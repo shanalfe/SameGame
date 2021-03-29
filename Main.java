@@ -1,9 +1,4 @@
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.JComponent;
-import java.awt.Graphics;
-
-/**
+/*
  * La classe <code>Main</code> contient le main de notre programme.
  * @version 1.0
  * @author Arthur DECORBEZ & Shana LEFEVRE

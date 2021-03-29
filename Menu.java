@@ -1,7 +1,5 @@
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
-
 
 /**
 * La classe <code>Menu</code> permet la création du menu.
@@ -20,7 +18,7 @@ public class Menu extends JFrame {
     	this.setSize (800,600);
 	  	this.setLocation (200,200);
 		this.setResizable(false);
-		this.setIconImage(new ImageIcon(getClass().getResource("pokeball.png")).getImage());
+		this.setIconImage(new ImageIcon(getClass().getResource("./Image/pokeball.png")).getImage());
 		this.setVisible(true);
 	  	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -31,7 +29,7 @@ public class Menu extends JFrame {
 		
 		// Panneau image de fond
 		JPanel fond = new JPanel();		
-		JLabel image = new JLabel( new ImageIcon( "salameche.jpg"));
+		JLabel image = new JLabel( new ImageIcon( "./Image/salameche.jpg"));
 		fond.add(image);
 		this.add (fond, BorderLayout.CENTER);
 	

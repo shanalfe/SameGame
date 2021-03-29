@@ -41,7 +41,7 @@ public class ControllerMenu implements ActionListener
 		if(action.equals("Grille aléatoire"))
 		{
 			System.out.println("Select mode: Random");
-			Plateau plateau = new Plateau("Random");
+			Plateau plateau = new Plateau("Random", null);
 			this.windows.dispose();
 			plateau.setVisible(true);
 		}
@@ -69,7 +69,10 @@ public class ControllerMenu implements ActionListener
 				if(file.getName().endsWith(".gri"))
 				{
 					System.out.println("It's a .gri file !");
-					LectureGrille lectureGrille = new LectureGrille(file);
+					
+					Plateau plateau = new Plateau("File", file);
+					this.windows.dispose();
+					plateau.setVisible(true);
 				}
 				else
 				{

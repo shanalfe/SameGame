@@ -66,8 +66,7 @@ public class ControllerJeu extends JFrame implements MouseListener {
         this.bool = bool; 
         this.grp = grp; 
         grp = 0;
-        this.resultat = resultat;
-        resultat = 0;
+        this.resultat = 0;
 
         int i = 0, j = 0;        
 
@@ -153,9 +152,8 @@ public class ControllerJeu extends JFrame implements MouseListener {
 
 
         @Override 
- 
     /**
-     * La méthode permet de séléctionner un groupe.
+     *  La méthode permet de séléctionner un groupe.
      */
     public void mouseEntered (MouseEvent evenement){
 
@@ -201,25 +199,23 @@ public class ControllerJeu extends JFrame implements MouseListener {
         this.grp = 0; // Réinitialisation taille du groupe
 
         System.out.println("MAJ Bool");
-
     }
 
 
     @Override
     /**
-     * La méthode permet de gérer l'evenement clique (enfoncé + relaché) de la souris.
-     */
+    * La méthode permet de gérer l'evenement clique (enfoncé + relaché) de la souris.
+    */
     public void mouseClicked​(MouseEvent e){
 
     }
 
 
     @Override
-
     /**
-     * La méthode permet l'évènement quand le bouton de la souris est enfoncée.
-     * Dans cette méthode, on supprime les blocs et on calcule le socre en fonction du nombre de blocs par groupe supprimés.
-     */
+    * La méthode permet l'évènement quand le bouton de la souris est enfoncée.
+    * Dans cette méthode, on supprime les blocs et on calcule le score en fonction du nombre de blocs par groupe supprimés.
+    */  
     public void mousePressed​(MouseEvent e){
 
         // Déclaration des variables
@@ -253,11 +249,10 @@ public class ControllerJeu extends JFrame implements MouseListener {
 
 
     @Override
-
     /**
-     * La méthode permet de gérer l'évènement quand le bouton de la souris est relachée.
-     * Dans cette  méthode, on réorganise les lignes et les colonnes. Puis on réinitialise toutes les valeurs et enfin on vérifie si le jeu est fini.
-     */
+    * La méthode permet de gérer l'évènement quand le bouton de la souris est relachée.
+    * Dans cette méthode, on réorganise les lignes et les colonnes. Puis on réinitialise toutes les valeurs et enfin on vérifie si le jeu est fini.
+    */
     public void mouseReleased​(MouseEvent e){
 
         // Déclaration des variables
@@ -472,13 +467,11 @@ public class ControllerJeu extends JFrame implements MouseListener {
 
 
     /**
-     * Renvoie le résultat obtenu à chaque clique
-     * @return resultat le score obtenu par l'utilisateur.
-     */
+    * Renvoie le résultat obtenu à chaque clique
+    * @return resultat le score obtenu par l'utilisateur
+    */
     public double getScore () {
         return this.resultat;
     }
-
-    
 
 }

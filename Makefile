@@ -34,14 +34,14 @@ ControllerMenu.class : ControllerMenu.java Plateau.class LectureGrille.class
 Plateau.class : Plateau.java GenerateurGrilleAleatoire.class
 	${JC} ${JCFLAGS} Plateau.java
 
-LectureGrille.class : LectureGrille.java 
-	${JC} ${JCFLAGS} LectureGrille.java
-
 ControllerJeu.class : ControllerJeu.java MenuFin.class 
 	${JC} ${JCFLAGS} ControllerJeu.java
 
 GenerateurGrilleAleatoire.class : GenerateurGrilleAleatoire.java Bulbi.class Salameche.class Carapuce.class ControllerJeu.class
 	${JC} ${JCFLAGS} GenerateurGrilleAleatoire.java
+
+LectureGrille.class : LectureGrille.java Bulbi.class Salameche.class Carapuce.class ControllerJeu.class
+	${JC} ${JCFLAGS} LectureGrille.java
 
 Bloc.class : Bloc.java 
 	${JC} ${JCFLAGS} Bloc.java

@@ -1,58 +1,109 @@
-/**
-* @version 1.0
-* @author Shana LEFEVRE & Arthur DECORBEZ
-*/
-
+import javax.swing.*;
 import java.io.*;
 
-public class LectureGrille
+/**
+* La classe <code>LectureGrille</code> génère une grille aléatoire et associe les dessins correspondants
+*/
+public class LectureGrille extends JPanel
 {
-	public static final String ANSI_RESET	= "\u001B[0m";
-	public static final String ANSI_RED		= "\u001B[31m";
-	public static final String ANSI_GREEN	= "\u001B[32m";
-	public static final String ANSI_BLUE	= "\u001B[34m";
+	/**
+	* Tableau qui représente la valeur d'une case d'un tableau
+	*/
 
-	public LectureGrille(File file)
+	protected char [][] tabTerm;
+	/**
+	* Appel du JPanel du jeu
+	*/
+
+	private JPanel jeu;
+
+	private JFrame fenetre;
+	/**
+	* Tableau qui affiche les blocs
+	*/
+
+	protected Bloc[][] tab;
+	/**
+	* Tableau qui représente le statut d'une case
+	*/
+
+	protected char [][] bool;
+	/**
+	* Taille d'un groupe
+	*/
+
+	protected double grp = 0;
+	/**
+	* JLabel du score
+	*/
+
+	public JLabel score;
+
+	/**
+	* Appel le JLabel score
+	*/
+	public LectureGrille (JLabel score, JFrame fenetre)
 	{
-		char tab[][] = new char[10][15];
+		this.score = score;
+		this.fenetre = fenetre;
+	}
+
+	/**
+	* Permet la génération de la grille aléatoire
+	* @param panel
+	* @see Menu
+	*/
+	public void tabGrille (JPanel panel, File file)
+	{
+
+		// Déclaration des variables
+		int j = 0, i = 0;
+		char tabTerm[][] = new char[10][15];
+		tab = new Bloc[10][15];
+		char bool [][] = new char [10][15];
+
+		this.jeu = panel;
 
 		try
 		{
-			//File file = new File("./Grille/luc.gri");
 			FileReader reader = new FileReader(file);
 
 			try
 			{
 				// Lecture du fichier
-				for(int j = 0; j < 10; j++)
+				for(i = 0; i < 10; i++)
 				{
-					for(int i = 0; i < 15; i++)
+					for(j = 0; j < 15; j++)
 					{
-						tab[j][i] = (char) reader.read();
+						tabTerm[i][j] = (char) reader.read();
 					}
 					reader.read();
 				}
 
-				// Affichage de tab[][] dans le terminal
-				for(int j = 0; j < 10; j++)
+				// Cf. code de Shana
+				for (i = 0; i < 10; i++)
 				{
-					for(int i = 0; i < 15; i++)
+					for (j = 0; j < 15; j++)
 					{
-						if(tab[j][i] == 'R')
+						if (tabTerm[i][j] == 'R')
 						{
-							System.out.print(ANSI_RED + tab[j][i] + ANSI_RESET);
+							tab[i][j] = new Salameche();
+							jeu.add(tab[i][j]);
 						}
-						else if(tab[j][i] == 'V')
+						else if (tabTerm[i][j] == 'V')
 						{
-							System.out.print(ANSI_GREEN + tab[j][i] + ANSI_RESET);
+							tab[i][j] = new Bulbi();
+							jeu.add(tab[i][j]);	 
 						}
-						else if(tab[j][i] == 'B')
-						{
-							System.out.print(ANSI_BLUE + tab[j][i] + ANSI_RESET);
+						else if (tabTerm[i][j] == 'B')
+						{	
+							tab[i][j] = new Carapuce();
+							jeu.add(tab[i][j]);		
 						}
-					}
-					System.out.println("");
+					}			
 				}
+
+				jeu.addMouseListener(new ControllerJeu (tab, tabTerm, bool, grp, score, fenetre));
 			}
 			catch(IOException e)
 			{
@@ -72,5 +123,41 @@ public class LectureGrille
 		{
 			System.err.println("Impossible d'ouvrir le fichier reels.bin en lecture !");
 		}
+	}
+
+	/**
+	* Renvoie la tab contenant les images correspondant à tabTerm
+	* @return tab
+	*/
+	public Bloc[][] getTab()
+	{
+		return tab;
+	}
+
+	/**
+	* Renvoie la tab RVB du terminal
+	* @return tabTerm
+	*/	
+	public char [][] getTabTerm()
+	{
+		return tabTerm;
+	}
+
+	/**
+	* Renvoie la tab bool utilisé dans ControlleurJeu pour le status des cases
+	* @return bool
+	*/
+	public char [][] getBool()
+	{
+		return bool;
+	}
+
+	/**
+	* Renvoie la taille d'un groupe utilisé dans ControlleurJeu
+	* @return grp
+	*/
+	public double getGrp()
+	{
+		return grp;
 	}
 }

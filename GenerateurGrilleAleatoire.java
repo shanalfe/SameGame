@@ -1,7 +1,6 @@
 import java.util.Random;
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
+
 /**
  * La classe </code>GenerateurGrilleAleatoire</code> génère une grille aléatoire et associe les dessins correspondants
  */
