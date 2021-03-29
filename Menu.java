@@ -20,7 +20,7 @@ public class Menu extends JFrame {
     	this.setSize (800,600);
 	  	this.setLocation (200,200);
 		this.setResizable(false);
-		
+		this.setIconImage(new ImageIcon(getClass().getResource("pokeball.png")).getImage());
 		this.setVisible(true);
 	  	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
