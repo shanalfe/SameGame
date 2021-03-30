@@ -2,45 +2,52 @@ import javax.swing.*;
 import java.io.*;
 
 /**
-* La classe <code>LectureGrille</code> génère une grille aléatoire et associe les dessins correspondants
+* La classe <code>LectureGrille</code> lit le fichier choisi, met les valeurs du fichier dans un tableau et associe les dessins correspondants.
+*
+* @version 1.0
+* @author Shana LEFEVRE & Arthur DECORBEZ
 */
 public class LectureGrille extends JPanel
 {
 	/**
-	* Tableau qui représente la valeur d'une case d'un tableau
+	* Tableau qui représente la valeur d'une case d'un tableau.
 	*/
-
 	protected char [][] tabTerm;
-	/**
-	* Appel du JPanel du jeu
-	*/
 
+	/**
+	* Composante du JPanel du jeu.
+	*/
 	private JPanel jeu;
 
+	/**
+	* Composante du JFrame de la fenetre.
+	*/
 	private JFrame fenetre;
-	/**
-	* Tableau qui affiche les blocs
-	*/
 
+	/**
+	* Tableau qui affiche les blocs.
+	*/
 	protected Bloc[][] tab;
-	/**
-	* Tableau qui représente le statut d'une case
-	*/
 
+	/**
+	* Tableau qui représente le statut d'une case.
+	*/
 	protected char [][] bool;
-	/**
-	* Taille d'un groupe
-	*/
 
+	/**
+	* Taille d'un groupe.
+	*/
 	protected double grp = 0;
-	/**
-	* JLabel du score
-	*/
 
+	/**
+	* Composante du JLabel du score.
+	*/
 	public JLabel score;
 
+
+
 	/**
-	* Appel le JLabel score
+	* Le constructueur appelle la fenetre et le JLabel du score. 
 	*/
 	public LectureGrille (JLabel score, JFrame fenetre)
 	{
@@ -48,19 +55,23 @@ public class LectureGrille extends JPanel
 		this.fenetre = fenetre;
 	}
 
+
+
 	/**
-	* Permet la génération de la grille aléatoire
+	* La méthode permet la lecture du fichier choisie ainsi que la transformation des données lu en tableau.
 	* @param panel
+	* @param file
 	* @see Menu
+	* @see Plateau
 	*/
 	public void tabGrille (JPanel panel, File file)
 	{
-
-		// Déclaration des variables
-		int j = 0, i = 0;
+		int i = 0; 
+		int j = 0;
 		char tabTerm[][] = new char[10][15];
+		char bool[][] = new char [10][15];
+
 		tab = new Bloc[10][15];
-		char bool [][] = new char [10][15];
 
 		this.jeu = panel;
 
@@ -70,17 +81,16 @@ public class LectureGrille extends JPanel
 
 			try
 			{
-				// Lecture du fichier
 				for(i = 0; i < 10; i++)
 				{
 					for(j = 0; j < 15; j++)
 					{
 						tabTerm[i][j] = (char) reader.read();
 					}
+
 					reader.read();
 				}
 
-				// Cf. code de Shana
 				for (i = 0; i < 10; i++)
 				{
 					for (j = 0; j < 15; j++)
@@ -125,8 +135,10 @@ public class LectureGrille extends JPanel
 		}
 	}
 
+
+
 	/**
-	* Renvoie la tab contenant les images correspondant à tabTerm
+	* La méthode renvoie le tableau tab contenant les images correspondant à tabTerm.
 	* @return tab
 	*/
 	public Bloc[][] getTab()
@@ -134,8 +146,10 @@ public class LectureGrille extends JPanel
 		return tab;
 	}
 
+
+
 	/**
-	* Renvoie la tab RVB du terminal
+	* La méthode renvoie le tableau tabTerm RVB du terminal.
 	* @return tabTerm
 	*/	
 	public char [][] getTabTerm()
@@ -143,8 +157,10 @@ public class LectureGrille extends JPanel
 		return tabTerm;
 	}
 
+
+
 	/**
-	* Renvoie la tab bool utilisé dans ControlleurJeu pour le status des cases
+	* La méthoderRenvoie le tableau bool utilisé dans ControlleurJeu pour le status des cases.
 	* @return bool
 	*/
 	public char [][] getBool()
@@ -152,8 +168,10 @@ public class LectureGrille extends JPanel
 		return bool;
 	}
 
+
+
 	/**
-	* Renvoie la taille d'un groupe utilisé dans ControlleurJeu
+	* La méthode renvoie la taille d'un groupe.
 	* @return grp
 	*/
 	public double getGrp()
