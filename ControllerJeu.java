@@ -334,16 +334,13 @@ public class ControllerJeu extends JFrame implements MouseListener {
 
             for (j = 0; j < 15; j++) {
 
-                this.tab[i][j].setBackground(Color.WHITE);
+                
 
-                if ( (this.tabTerm[i][j] != 'X') && (this.bool [i][j] == 'F') ) {
+               if ( (this.tabTerm[i][j] != 'X') && (this.bool [i][j] == 'F') ) {
 
                     Radar (i, j);
 
-                    if (this.grp > 1.0) {
-
-                        return true;
-                    }
+                    
                 }                  
             }
         }
@@ -352,9 +349,18 @@ public class ControllerJeu extends JFrame implements MouseListener {
 
             for (j = 0; j < 15; j++) {
 
+                this.tab[i][j].setBackground(Color.WHITE);
+
                 this.bool [i][j] = 'F';
             }
         }
+
+
+        if (this.grp > 1.0) {
+
+            return true;
+        }
+        
 
         return false;
 
