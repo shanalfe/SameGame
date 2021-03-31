@@ -29,6 +29,7 @@ public class MenuFin extends JFrame {
         this.setTitle ("SameGame");
         this.setSize (800,600);
         this.setLocation (200,200);
+        this.setIconImage(new ImageIcon(getClass().getResource("./Image/pokeball.png")).getImage());
         this.setResizable(false);
         
         this.setVisible(true);

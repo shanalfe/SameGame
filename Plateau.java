@@ -27,6 +27,8 @@ public class Plateau extends JFrame
 			fenetre.setSize(800, 600);
 			fenetre.setLocation(200, 200);
 			fenetre.setResizable(false);
+            fenetre.setIconImage(new ImageIcon(getClass().getResource("./Image/pokeball.png")).getImage());
+
 			fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			fenetre.setVisible(true);
 
@@ -63,6 +65,8 @@ public class Plateau extends JFrame
 			JFrame fenetre = new JFrame("~ SameGame ~");
 			fenetre.setSize(800, 600);
 			fenetre.setLocation(200, 200);
+            fenetre.setIconImage(new ImageIcon(getClass().getResource("./Image/pokeball.png")).getImage());
+
 			fenetre.setResizable(false);
 			fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			fenetre.setVisible(true);

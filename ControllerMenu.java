@@ -1,22 +1,15 @@
-/**
-* @version 1.0
-* @author Shana LEFEVRE & Arthur DECORBEZ
-*/
-
 import javax.swing.*;
 import java.awt.event.*;
-
-// Necessary for file selection
-import javax.swing.JFileChooser;
-
-// Necessary for file selection & read file
 import java.io.File;
-
+import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
 * Classe ControllerMenu qui gère les évènements de la classe Menu
 * On peut choisir le mode de génération de la grille : aléatoire ou fichier
+*
+* @version 1.0
+* @author Shana LEFEVRE & Arthur DECORBEZ
 */
 public class ControllerMenu implements ActionListener
 {
@@ -77,6 +70,7 @@ public class ControllerMenu implements ActionListener
 				else
 				{
 					System.out.println("It's not a .gri file !");
+					JOptionPane.showMessageDialog(null, "Veuillez, s'il vous plait, selectionner un fichier ayant pour extension .gri", "Extension non valide", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		}
