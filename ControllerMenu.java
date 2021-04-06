@@ -5,18 +5,20 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
-* Classe ControllerMenu qui gère les évènements de la classe Menu
-* On peut choisir le mode de génération de la grille : aléatoire ou fichier
+* La classe <code>ControllerMenu</code> qui gère les évènements de la classe Menu. On peut choisir le mode de génération de la grille : aléatoire ou fichier.
 *
 * @version 1.0
 * @author Shana LEFEVRE & Arthur DECORBEZ
 */
 public class ControllerMenu implements ActionListener
 {
+	/**
+	* Composante de la fenetre.
+	*/
 	private JFrame windows;
 
 	/**
-	* Constructeur ControlleurMenu
+	* Le constructeur déstinée à la création de constante.
 	*/
 	public ControllerMenu(JFrame w)
 	{
@@ -24,8 +26,7 @@ public class ControllerMenu implements ActionListener
 	}
 
 	/**
-	* Méthode actionPerformed
-	* Permet le control des boutons pour le mode de jeu
+	* La méthode permet le control des boutons pour le mode de jeu.
 	*/
 	public void actionPerformed(ActionEvent e)
 	{
@@ -47,7 +48,6 @@ public class ControllerMenu implements ActionListener
 			fileChooser.setMultiSelectionEnabled(false);
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("GRI File (.gri)", "gri");
 
-			
 			fileChooser.setFileFilter(filter);
 
 			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -55,8 +55,6 @@ public class ControllerMenu implements ActionListener
 
 			if(returnValue == JFileChooser.APPROVE_OPTION)
 			{
-				//System.out.println("APPROVE_OPTION");
-
 				File file = fileChooser.getSelectedFile();
 
 				if(file.getName().endsWith(".gri"))
@@ -70,7 +68,7 @@ public class ControllerMenu implements ActionListener
 				else
 				{
 					System.out.println("It's not a .gri file !");
-					JOptionPane.showMessageDialog(null, "Veuillez, s'il vous plait, selectionner un fichier ayant pour extension .gri", "Extension non valide", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Veuillez selectionner un fichier ayant pour extension \".gri\"", "Extension non valide", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		}

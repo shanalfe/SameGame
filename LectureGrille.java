@@ -12,7 +12,7 @@ public class LectureGrille extends JPanel
 	/**
 	* Tableau qui représente la valeur d'une case d'un tableau.
 	*/
-	protected char [][] tabTerm;
+	protected char[][] tabTerm;
 
 	/**
 	* Composante du JPanel du jeu.
@@ -32,7 +32,7 @@ public class LectureGrille extends JPanel
 	/**
 	* Tableau qui représente le statut d'une case.
 	*/
-	protected char [][] bool;
+	protected char[][] bool;
 
 	/**
 	* Taille d'un groupe.
@@ -47,9 +47,13 @@ public class LectureGrille extends JPanel
 
 
 	/**
-	* Le constructueur appelle la fenetre et le JLabel du score. 
+	* Le constructueur appelle la fenetre et le JLabel du score.
+	*
+	* @param score
+	* @param fenetre
+	* @see Plateau
 	*/
-	public LectureGrille (JLabel score, JFrame fenetre)
+	public LectureGrille(JLabel score, JFrame fenetre)
 	{
 		this.score = score;
 		this.fenetre = fenetre;
@@ -59,17 +63,18 @@ public class LectureGrille extends JPanel
 
 	/**
 	* La méthode permet la lecture du fichier choisie ainsi que la transformation des données lu en tableau.
+	*
 	* @param panel
 	* @param file
 	* @see Menu
 	* @see Plateau
 	*/
-	public void tabGrille (JPanel panel, File file)
+	public void tabGrille(JPanel panel, File file)
 	{
-		int i = 0; 
+		int i = 0;
 		int j = 0;
 		char tabTerm[][] = new char[10][15];
-		char bool[][] = new char [10][15];
+		char bool[][] = new char[10][15];
 
 		tab = new Bloc[10][15];
 
@@ -91,9 +96,9 @@ public class LectureGrille extends JPanel
 					reader.read();
 				}
 
-				for (i = 0; i < 10; i++)
+				for(i = 0; i < 10; i++)
 				{
-					for (j = 0; j < 15; j++)
+					for(j = 0; j < 15; j++)
 					{
 						if (tabTerm[i][j] == 'R')
 						{
@@ -113,11 +118,11 @@ public class LectureGrille extends JPanel
 					}			
 				}
 
-				jeu.addMouseListener(new ControllerJeu (tab, tabTerm, bool, grp, score, fenetre));
+				jeu.addMouseListener(new ControllerJeu(tab, tabTerm, bool, grp, score, fenetre));
 			}
 			catch(IOException e)
 			{
-				System.err.println("Impossible de lire dans le fichier reels.bin !");
+				System.err.println("Impossible de lire dans le fichier !");
 			}
 
 			try
@@ -126,12 +131,12 @@ public class LectureGrille extends JPanel
 			}
 			catch(IOException e)
 			{
-				System.err.println("Impossible de fermer le fichier reels.bin !");
+				System.err.println("Impossible de fermer le fichier !");
 			}
 		}
 		catch(FileNotFoundException e)
 		{
-			System.err.println("Impossible d'ouvrir le fichier reels.bin en lecture !");
+			System.err.println("Impossible d'ouvrir le fichier en lecture !");
 		}
 	}
 
@@ -139,6 +144,7 @@ public class LectureGrille extends JPanel
 
 	/**
 	* La méthode renvoie le tableau tab contenant les images correspondant à tabTerm.
+	*
 	* @return tab
 	*/
 	public Bloc[][] getTab()
@@ -150,9 +156,10 @@ public class LectureGrille extends JPanel
 
 	/**
 	* La méthode renvoie le tableau tabTerm RVB du terminal.
+	*
 	* @return tabTerm
 	*/	
-	public char [][] getTabTerm()
+	public char[][] getTabTerm()
 	{
 		return tabTerm;
 	}
@@ -161,9 +168,10 @@ public class LectureGrille extends JPanel
 
 	/**
 	* La méthoderRenvoie le tableau bool utilisé dans ControlleurJeu pour le status des cases.
+	*
 	* @return bool
 	*/
-	public char [][] getBool()
+	public char[][] getBool()
 	{
 		return bool;
 	}
@@ -172,6 +180,7 @@ public class LectureGrille extends JPanel
 
 	/**
 	* La méthode renvoie la taille d'un groupe.
+	*
 	* @return grp
 	*/
 	public double getGrp()
